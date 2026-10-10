@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Баня 226 × 166</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: header with concept switch → photo viewer (big frame + angle strip) beside a spec column → full-width 3D cutaway */
+:root{
+  --bg:#f3f4f3; --surface:#ffffff; --fg:#1d2121; --muted:#5f6765; --line:#d6dad8; --accent:#2f3a37; --chip:#e8ebea;
+  --f-display:"Unbounded","Onest",system-ui,sans-serif; --f-body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161918;--surface:#1f2322;--fg:#e7ebea;--muted:#9aa4a1;--line:#343a39;--accent:#c9d3d0;--chip:#2a2f2e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161918;--surface:#1f2322;--fg:#e7ebea;--muted:#9aa4a1;--line:#343a39;--accent:#c9d3d0;--chip:#2a2f2e;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55;padding-inline:clamp(16px,3vw,40px);padding-block:24px 56px}
+.wrap{max-width:1280px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,4vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:20px;margin:0;text-wrap:balance}
+h3{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0}
+.lead{max-width:70ch;color:var(--muted);margin:0}
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tab{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;display:grid;gap:8px;font:inherit}
+.tab:hover{border-color:var(--muted)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab[aria-selected="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.tab .t{font-weight:600}
+.tab .s{font-size:13px;color:var(--muted)}
+.sw{display:flex;height:10px;border-radius:3px;overflow:hidden}
+.sw i{flex:1}
+.main{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.tabs{grid-template-columns:minmax(0,1fr)}}
+.frame{position:relative;background:#cfd3d1;border-radius:8px;overflow:hidden;aspect-ratio:4/3;max-width:100%}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame .cap{position:absolute;left:12px;bottom:12px;background:rgba(20,22,22,.72);color:#f2f4f3;font-size:13px;padding:5px 10px;border-radius:5px}
+.frame .busy{position:absolute;inset:0;display:grid;place-items:center;color:#2b302f;font-family:var(--f-mono);font-size:13px}
+.strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.thumb{appearance:none;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--chip);aspect-ratio:4/3}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb[aria-current="true"]{border-color:var(--accent)}
+.thumb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.labels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;font-size:12px;color:var(--muted);margin-top:4px}
+.spec{display:grid;gap:22px;min-width:0}
+.spec p{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:8px;background:var(--chip);border-radius:999px;padding:4px 12px 4px 4px;font-size:13px}
+.chip i{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:0;font-size:14px}
+dt{color:var(--muted)} dd{margin:0}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto}
+.plan svg{display:block;width:100%;height:auto;min-width:300px}
+.real{display:grid;gap:12px}
+.real .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.rgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rgrid figure{margin:0;display:grid;gap:6px;min-width:0}
+.rgrid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block;background:var(--chip)}
+.rgrid figcaption{font-size:13px;color:var(--muted)}
+@media (max-width:700px){.rgrid{grid-template-columns:minmax(0,1fr)}}
+.shop{display:grid;gap:12px}
+.shop .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.tot{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tot div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
+.tot b{font-size:20px;font-weight:500}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.tw table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+.tw th,.tw td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tw thead th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tw .grp th{background:var(--chip);font-weight:600}
+.tw .sub td{font-weight:600}
+.tw .num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw a{color:var(--fg)}
+.nt{display:block;font-size:12px;color:var(--muted)}
+.fine{margin:0;font-size:13px;color:var(--muted);max-width:90ch}
+@media (max-width:560px){.tot{grid-template-columns:minmax(0,1fr)}}
+.mats{display:grid;gap:10px;margin-top:22px}
+.three{display:grid;gap:12px}
+.three .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+#live{width:100%;aspect-ratio:16/9;max-height:640px;border-radius:8px;background:#cfd3d1;display:block;touch-action:none}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;font-size:14px}
+.notes div{display:grid;gap:6px;align-content:start}
+.notes p{margin:0;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Ремонт от нулата · баня 226 × 166 см · коридор</div>
+    <h1>Баня и коридор</h1>
+    <p class="lead">Стените, ревизията (31 × 51), колоната до вратата (71 × 21) и вратата (74 см, на 77 см от ъгъла) са построени точно по вашия чертеж. Вътре са само мивка, бойлер, тоалетна и душ с външна батерия, без кабина и без отделена душ зона. Нищо не е вградено в стената.</p>
+  </header>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <section class="main">
+    <div>
+      <div class="frame"><img id="big" alt=""><div class="busy" id="busy">Подготвям изгледите…</div><div class="cap" id="cap"></div></div>
+      <div class="strip" id="strip"></div>
+      <div class="labels" id="labels"></div>
+      <div class="mats" id="mats"></div>
+    </div>
+    <aside class="spec" id="spec"></aside>
+  </section>
+
+  <section class="three">
+    <div class="bar"><h2>3D модел</h2><span class="eyebrow">Влачете за завъртане · колелце/щипка за мащаб</span></div>
+    <canvas id="live"></canvas>
+  </section>
+
+  <section class="real" aria-labelledby="real-h">
+    <div class="bar"><h2 id="real-h">Скандинавско дърво: реалистични изгледи</h2><span class="eyebrow">Рендер с физически точна светлина</span></div>
+    <div class="rgrid">
+      <figure><img src="render/banya_door.jpg" alt="Баня, от вратата" loading="lazy"><figcaption>Баня, от вратата</figcaption></figure>
+      <figure><img src="render/banya_shower.jpg" alt="Баня, към душа" loading="lazy"><figcaption>Баня, към душа</figcaption></figure>
+      <figure><img src="render/banya_toilet.jpg" alt="Баня, към тоалетната" loading="lazy"><figcaption>Баня, към тоалетната</figcaption></figure>
+      <figure><img src="render/banya_sink.jpg" alt="Баня, към мивката и бойлера" loading="lazy"><figcaption>Баня, към мивката и бойлера</figcaption></figure>
+      <figure><img src="render/mb_wc_toilet.jpg" alt="Малка баня, към тоалетната" loading="lazy"><figcaption>Малка баня, към тоалетната</figcaption></figure>
+      <figure><img src="render/mb_wc_shower.jpg" alt="Малка баня, към душа" loading="lazy"><figcaption>Малка баня, към душа</figcaption></figure>
+      <figure><img src="render/mb_wc_sink.jpg" alt="Малка баня, към мивката и бойлера" loading="lazy"><figcaption>Малка баня, към мивката и бойлера</figcaption></figure>
+      <figure><img src="render/koridor_vhod.jpg" alt="Коридор, от входа" loading="lazy"><figcaption>Коридор, от входа</figcaption></figure>
+      <figure><img src="render/koridor_kam_vhoda.jpg" alt="Коридор, към входа" loading="lazy"><figcaption>Коридор, към входа</figcaption></figure>
+      <figure><img src="render/koridor_nisha.jpg" alt="Коридор, нишата с пералнята" loading="lazy"><figcaption>Коридор, нишата с пералнята</figcaption></figure>
+      <figure><img src="render/koridor_agal.jpg" alt="Коридор, вратите в ъгъла" loading="lazy"><figcaption>Коридор, вратите в ъгъла</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="shop" aria-labelledby="shop-h">
+    <div class="bar"><h2 id="shop-h">Списък за покупка</h2><span class="eyebrow">Само видимите материали и оборудване · цени от 09.10.2026</span></div>
+    <div class="tot"><div><span class="eyebrow">Баня</span><b class="mono">1 926,79 €</b></div><div><span class="eyebrow">Коридор</span><b class="mono">325,36 €</b></div><div><span class="eyebrow">Малка баня</span><b class="mono">1 689,09 €</b></div><div><span class="eyebrow">Общо</span><b class="mono">3 941,24 €</b></div></div>
+    <div class="tw"><table><thead><tr><th scope="col">Какво</th><th scope="col">Количество</th><th scope="col">Най-добра намерена оферта</th><th scope="col" class="num">Ед. цена</th><th scope="col" class="num">Сума</th></tr></thead><tbody><tr class="grp"><th colspan="5" scope="colgroup">Баня</th></tr><tr><td>Под: гранитогрес светъл дъб 20×120<span class="nt">3,44 м² + фира</span></td><td>4 пакета (4,9 м²)</td><td><a href="https://bauhaus.bg/granitogres-kai-iberica-beije/p/117904" target="_blank" rel="noopener">Kai Iberica Beije 20,4×120,4</a><span class="nt">Bauhaus</span></td><td class="num">14,67 €</td><td class="num">58,68 €</td></tr><tr><td>Стени: плочки 60×120, бели, мат, ректифицирани<span class="nt">15,8 м² до 240 см + фира за ъгли на 45°; вижте мостра (лек мраморен рисунък)</span></td><td>14 пакета (20,2 м²)</td><td><a href="https://bauhaus.bg/granitogres-kai-marble/p/146173" target="_blank" rel="noopener">KAI Marble 60×120</a><span class="nt">Bauhaus</span></td><td class="num">22,97 €</td><td class="num">321,58 €</td></tr><tr><td>Линеен сифон в пода на душа, 80 см, четкано злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/lineen-otvodnitel-rea-neox-brush-gold-80" target="_blank" rel="noopener">Rea Neox Brush Gold 80</a><span class="nt">bania-rea.bg</span></td><td class="num">81,00 €</td><td class="num">81,00 €</td></tr><tr><td>Структура за вграждане + бутон, четкано злато (комплект)<span class="nt">със същото злато като душа и сифоните; потвърдете цвета с магазина</span></td><td>1 к-т</td><td><a href="https://bania-rea.bg/komplekt-struktura-za-vgrazdane-za-wc-slim-024n-s-buton-t-brush-gold" target="_blank" rel="noopener">Rea Slim 024N + бутон T Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">241,00 €</td><td class="num">241,00 €</td></tr><tr><td>Окачена тоалетна без ръб, тънка седалка със забавено падане</td><td>1 бр.</td><td><a href="https://praktiker.bg/bg/Toaletni-chinii/STENNA-TOALETNA-ChINIYa-KOMPLEKT-SAS-SEDALKA-CERSANIT-MODUO-CLEAN-ON/p/145639" target="_blank" rel="noopener">Cersanit Moduo CleanOn</a><span class="nt">Praktiker</span></td><td class="num">132,90 €</td><td class="num">132,90 €</td></tr><tr><td>Душ система с термостат, външна, четкано злато<span class="nt">проверете диаметъра на горния душ</span></td><td>1 бр.</td><td><a href="https://bania-rea.bg/dus-sistema-s-termostat-rea-drop-brush-gold" target="_blank" rel="noopener">Rea Drop Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">244,00 €</td><td class="num">244,00 €</td></tr><tr><td>Висок смесител за мивка, злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/smesitel-za-mivka-rea-lungo-lgold-high" target="_blank" rel="noopener">Rea Lungo L.Gold High, 280 мм</a><span class="nt">bania-rea.bg</span></td><td class="num">81,00 €</td><td class="num">81,00 €</td></tr><tr><td>Мивка тип купа, кръгла<span class="nt">Ø36 на плот 35 см стърчи 1 см: плот поне 38 см или мивка Ø32</span></td><td>1 бр.</td><td><a href="https://www.sanitino.bg/kielle-idolio-mivka-za-plot-diametar-36-cm-byala-30624430" target="_blank" rel="noopener">kielle Idolio Ø36</a><span class="nt">sanitino.bg</span></td><td class="num">60,24 €</td><td class="num">60,24 €</td></tr><tr><td>Клик-клак: запушалката в дъното на мивката</td><td>1 бр.</td><td><a href="https://inex-bg.com/p/click-clack-sifon-bez-prelivnik-brushed-gold-5900378357766" target="_blank" rel="noopener">Lavita, без преливник, brushed gold</a><span class="nt">inex-bg.com</span></td><td class="num">26,00 €</td><td class="num">26,00 €</td></tr><tr><td>Сифон под мивката (видим под плота)<span class="nt">видим е, затова е метален</span></td><td>1 бр.</td><td><a href="https://bania-rea.bg/sifon-rea-gold-mat" target="_blank" rel="noopener">Rea Gold MAT, месинг</a><span class="nt">bania-rea.bg</span></td><td class="num">95,00 €</td><td class="num">95,00 €</td></tr><tr><td>Държач за тоалетна хартия, четкано злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/postavka-za-toaletna-xartiia-will-brush-gold" target="_blank" rel="noopener">Rea Will Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">31,00 €</td><td class="num">31,00 €</td></tr><tr><td>Кръгло огледало Ø50, златна метална рамка</td><td>1 бр.</td><td><a href="https://www.bgastore.bg/krgl-ogledalo-modern-zlatno-50-cm-o" target="_blank" rel="noopener">Modern Gold Ø50</a><span class="nt">bgastore.bg</span></td><td class="num">69,95 €</td><td class="num">69,95 €</td></tr><tr><td>Плот с жив ръб за мивката, 94×35<span class="nt">масив акация, 4 см</span></td><td>1 бр.</td><td><a href="https://www.olx.bg/d/ad/plotove-za-masa-ot-masiv-akatsiya-razlichni-razmeri-4sm-debelina-CID262-ID9fk8u.html" target="_blank" rel="noopener">Плотове от масив акация, 4 см</a><span class="nt">OLX · Пловдив</span></td><td class="num">—</td><td class="num">по договаряне</td></tr><tr><td>Плот с жив ръб над казанчето, ~87×26×4</td><td>1 бр.</td><td>по оферта (дърводелец / OLX)<span class="nt">—</span></td><td class="num">—</td><td class="num">по оферта</td></tr><tr><td>Конзоли за плота</td><td>1 чифт</td><td>скрити конзоли (не се виждат)<span class="nt">—</span></td><td class="num">—</td><td class="num">по оферта</td></tr><tr><td>Хоризонтален бойлер 80 л<span class="nt">~85 × Ø44 см, влиза в стената от 94 см</span></td><td>1 бр.</td><td><a href="https://www.technomarket.bg/boiler/tesy-gch-804430-b12-tsr-09132434" target="_blank" rel="noopener">Tesy BiLight GCH 804430 B12 TSR</a><span class="nt">Техномаркет</span></td><td class="num">179,00 €</td><td class="num">179,00 €</td></tr><tr><td>Луни IP65, 3000 K</td><td>4 бр.</td><td><a href="https://introlight.bg/products/led-vlagozaschitena-luna-ip65-vera-vera830rw" target="_blank" rel="noopener">ACA Vera 8 W</a><span class="nt">introlight.bg</span></td><td class="num">7,44 €</td><td class="num">29,76 €</td></tr><tr><td>LED лента за нишата + захранване</td><td>1 к-т</td><td><a href="https://www.led-zona.bg/p/led-lenta-ip65-12v-4-8w-m-3000k-560lm-led-labs-16-1300-02/" target="_blank" rel="noopener">LED Labs IP65 3000 K + ACA 24 W</a><span class="nt">led-zona.bg</span></td><td class="num">20,20 €</td><td class="num">20,20 €</td></tr><tr><td>Вентилатор с влагомер и таймер (на ревизията)<span class="nt">бял стъклен панел</span></td><td>1 бр.</td><td><a href="https://praktiker.bg/en/Ventilatori-za-banya/VENTILATOR-ZA-BANYa-CATA-E-100-GTH/p/836230" target="_blank" rel="noopener">Cata E-100 GTH</a><span class="nt">Praktiker · във Vikiwat Пловдив е 107,07 € (само на място)</span></td><td class="num">112,48 €</td><td class="num">112,48 €</td></tr><tr><td>Възвратна клапа Ø100 за вентилатора<span class="nt">срещу миризми от щранга; ориентировъчна цена</span></td><td>1 бр.</td><td>Vents KO 100 или подобна<span class="nt">магазин за вентилация</span></td><td class="num">≈ 5,00 €</td><td class="num">5,00 €</td></tr><tr><td>Алуминиева врата 70×200, златен дъб<span class="nt">стандартна, за отвор 74×205; откъм банята без лайсни, плочки до касата + силикон; монтаж ~25–60 € отгоре</span></td><td>1 бр.</td><td><a href="https://bazar.bg/obiava-55586560/aluminieva-vrat-za-bania-i-wc-70x200-sm-biala-zlaten-dab-venge-palen-komplekt" target="_blank" rel="noopener">VIA AL, пълен комплект: каса, брава, дръжки, панти</a><span class="nt">Виа доорс · Пловдив, доставка в страната</span></td><td class="num">138,00 €</td><td class="num">138,00 €</td></tr><tr class="sub"><td colspan="4">Общо баня</td><td class="num">1 926,79 €</td></tr><tr class="grp"><th colspan="5" scope="colgroup">Коридор</th></tr><tr><td>Под: гранитогрес среден/тъмен дъб 20×120<span class="nt">4,94 м² + фира + 1 пакет за перваз</span></td><td>6 пакета (7,4 м²)</td><td><a href="https://bauhaus.bg/granitogres-kai-ij-segura/p/169921" target="_blank" rel="noopener">Kai IJ Segura 20,4×120,4</a><span class="nt">Bauhaus</span></td><td class="num">15,90 €</td><td class="num">95,40 €</td></tr><tr><td>Плот над пералнята, дъб</td><td>1 бр.</td><td><a href="https://bauhaus.bg/masivni-plotove/c/1768" target="_blank" rel="noopener">Плот омаслен дъб 80×80×2,6 (рязане на 77×52)</a><span class="nt">Bauhaus</span></td><td class="num">77,00 €</td><td class="num">77,00 €</td></tr><tr><td>Шкаф над пералнята, 2 врати</td><td>1 бр.</td><td><a href="https://jysk.bg/skhranenie/etazherki/shkaf-skals-2-vrati-byal" target="_blank" rel="noopener">JYSK SKALS 71×81×35, бял</a><span class="nt">JYSK</span></td><td class="num">60,00 €</td><td class="num">60,00 €</td></tr><tr><td>Тесен шкаф за обувки<span class="nt">стената е точно 65 см</span></td><td>1 бр.</td><td><a href="https://jysk.bg/skhranenie/skhranenie-na-obuvki/shkaf-za-obuvki-bakhuse-2-otdeleniya-byal" target="_blank" rel="noopener">JYSK BAKHUSE 65×25×85, бял</a><span class="nt">JYSK</span></td><td class="num">45,00 €</td><td class="num">45,00 €</td></tr><tr><td>Закачалка дъб + куки</td><td>1 бр.</td><td><a href="https://bazar.bg/obiava-43397324/stenna-zakachalka-darvena-dab-4-kuki-45x7x1-2sm" target="_blank" rel="noopener">Стенна закачалка дъб, 4 куки, 45 см</a><span class="nt">bazar.bg</span></td><td class="num">10,76 €</td><td class="num">10,76 €</td></tr><tr><td>Луни, 3000 K</td><td>5 бр.</td><td><a href="https://introlight.bg/products/led-vlagozaschitena-luna-ip65-vera-vera830rw" target="_blank" rel="noopener">ACA Vera 8 W</a><span class="nt">introlight.bg</span></td><td class="num">7,44 €</td><td class="num">37,20 €</td></tr><tr><td>Пералня със сушилня, slim, антрацит<span class="nt">8 кг пране / 5 кг сушене; проверете дълбочината с вратата (нишата е 52 см под плота)</span></td><td>1 бр.</td><td><a href="https://www.emag.bg/peralnja-sys-sushilnja-slim-haier-prane-8-kg-sushene-5-kg-1400-ob-min-klas-a-motor-direct-motion-wi-fi-irefresh-abt-pillow-drum-dual-spray-antracit-hwd80-b14959s8u1s/pd/DBVW8FMBM/" target="_blank" rel="noopener">Haier HWD80-B14959S8U1S</a><span class="nt">eMAG · вашият избор</span></td><td class="num">—</td><td class="num">по eMAG</td></tr><tr class="sub"><td colspan="4">Общо коридор</td><td class="num">325,36 €</td></tr><tr class="grp"><th colspan="5" scope="colgroup">Малка баня</th></tr><tr><td>Под: гранитогрес светъл дъб 20×120<span class="nt">1,38 м² + фира</span></td><td>2 пакета (2,5 м²)</td><td><a href="https://bauhaus.bg/granitogres-kai-iberica-beije/p/117904" target="_blank" rel="noopener">Kai Iberica Beije 20,4×120,4</a><span class="nt">Bauhaus</span></td><td class="num">14,67 €</td><td class="num">29,34 €</td></tr><tr><td>Стени: плочки 60×120, бели, мат<span class="nt">10,5 м² до 240 см + фира</span></td><td>9 пакета (13 м²)</td><td><a href="https://bauhaus.bg/granitogres-kai-marble/p/146173" target="_blank" rel="noopener">KAI Marble 60×120</a><span class="nt">Bauhaus</span></td><td class="num">22,97 €</td><td class="num">206,73 €</td></tr><tr><td>Структура за вграждане + бутон, четкано злато</td><td>1 к-т</td><td><a href="https://bania-rea.bg/komplekt-struktura-za-vgrazdane-za-wc-slim-024n-s-buton-t-brush-gold" target="_blank" rel="noopener">Rea Slim 024N + бутон T Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">241,00 €</td><td class="num">241,00 €</td></tr><tr><td>Окачена тоалетна без ръб, тънка седалка</td><td>1 бр.</td><td><a href="https://praktiker.bg/bg/Toaletni-chinii/STENNA-TOALETNA-ChINIYa-KOMPLEKT-SAS-SEDALKA-CERSANIT-MODUO-CLEAN-ON/p/145639" target="_blank" rel="noopener">Cersanit Moduo CleanOn</a><span class="nt">Praktiker</span></td><td class="num">132,90 €</td><td class="num">132,90 €</td></tr><tr><td>Държач за тоалетна хартия, четкано злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/postavka-za-toaletna-xartiia-will-brush-gold" target="_blank" rel="noopener">Rea Will Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">31,00 €</td><td class="num">31,00 €</td></tr><tr><td>Плот с жив ръб над казанчето, ~89×26</td><td>1 бр.</td><td><a href="https://www.olx.bg/d/ad/plotove-za-masa-ot-masiv-akatsiya-razlichni-razmeri-4sm-debelina-CID262-ID9fk8u.html" target="_blank" rel="noopener">Плотове от масив акация, 4 см</a><span class="nt">OLX · Пловдив</span></td><td class="num">—</td><td class="num">по договаряне</td></tr><tr><td>Душ система с термостат, външна, четкано злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/dus-sistema-s-termostat-rea-drop-brush-gold" target="_blank" rel="noopener">Rea Drop Brush Gold</a><span class="nt">bania-rea.bg</span></td><td class="num">244,00 €</td><td class="num">244,00 €</td></tr><tr><td>Линеен сифон в пода на душа, 80 см</td><td>1 бр.</td><td><a href="https://bania-rea.bg/lineen-otvodnitel-rea-neox-brush-gold-80" target="_blank" rel="noopener">Rea Neox Brush Gold 80</a><span class="nt">bania-rea.bg</span></td><td class="num">81,00 €</td><td class="num">81,00 €</td></tr><tr><td>Малка окачена мивка ~42×23</td><td>1 бр.</td><td><a href="https://www.sanitino.bg/kielle-arkas-i-kompaktna-mivka-42x23-cm-bez-prelivnik-1-otvor-za-smesitel-otdyasno-byala-30611400r" target="_blank" rel="noopener">kielle Arkas I, без преливник, отвор вдясно</a><span class="nt">sanitino.bg</span></td><td class="num">56,23 €</td><td class="num">56,23 €</td></tr><tr><td>Нисък смесител за мивка, четкано злато</td><td>1 бр.</td><td><a href="https://bania-rea.bg/smesitel-za-mivka-rea-foster-gold-brush-low" target="_blank" rel="noopener">Rea Foster Gold Brush Low</a><span class="nt">bania-rea.bg</span></td><td class="num">59,00 €</td><td class="num">59,00 €</td></tr><tr><td>Клик-клак: запушалката на мивката</td><td>1 бр.</td><td><a href="https://inex-bg.com/p/click-clack-sifon-bez-prelivnik-brushed-gold-5900378357766" target="_blank" rel="noopener">Lavita, без преливник, brushed gold</a><span class="nt">inex-bg.com</span></td><td class="num">26,00 €</td><td class="num">26,00 €</td></tr><tr><td>Сифон под мивката (видим)</td><td>1 бр.</td><td><a href="https://bania-rea.bg/sifon-rea-gold-mat" target="_blank" rel="noopener">Rea Gold MAT, месинг</a><span class="nt">bania-rea.bg</span></td><td class="num">95,00 €</td><td class="num">95,00 €</td></tr><tr><td>Кръгло огледало Ø40, златна рамка<span class="nt">потвърдете размера 40 см с продавача</span></td><td>1 бр.</td><td><a href="https://favi.bg/produkti/p/mexen-loft-krglo-ogledalo-za-bana-30-sm-zlatna-ramka-9850-030-030-000" target="_blank" rel="noopener">Mexen Loft Ø40</a><span class="nt">favi.bg</span></td><td class="num">32,09 €</td><td class="num">32,09 €</td></tr><tr><td>Хоризонтален бойлер 50 л<span class="nt">80 л не влиза в стена от 83 см</span></td><td>1 бр.</td><td><a href="https://www.technomarket.bg/boiler/tesy-gch-503520-b12-tsr-09131822" target="_blank" rel="noopener">Tesy GCH 50 35 20 B12 TSR, ~80 × Ø35</a><span class="nt">Техномаркет</span></td><td class="num">159,00 €</td><td class="num">159,00 €</td></tr><tr><td>Вентилатор с влагомер и таймер (на ревизията)</td><td>1 бр.</td><td><a href="https://praktiker.bg/en/Ventilatori-za-banya/VENTILATOR-ZA-BANYa-CATA-E-100-GTH/p/836230" target="_blank" rel="noopener">Cata E-100 GTH</a><span class="nt">Praktiker</span></td><td class="num">112,48 €</td><td class="num">112,48 €</td></tr><tr><td>Възвратна клапа Ø100<span class="nt">ориентировъчна цена</span></td><td>1 бр.</td><td>Vents KO 100 или подобна<span class="nt">магазин за вентилация</span></td><td class="num">≈ 5,00 €</td><td class="num">5,00 €</td></tr><tr><td>Луни IP65, 3000 K</td><td>3 бр.</td><td><a href="https://introlight.bg/products/led-vlagozaschitena-luna-ip65-vera-vera830rw" target="_blank" rel="noopener">ACA Vera 8 W</a><span class="nt">introlight.bg</span></td><td class="num">7,44 €</td><td class="num">22,32 €</td></tr><tr><td>Алуминиева врата 60×200, златен дъб<span class="nt">стандартна, за отвор 65×205; откъм банята без лайсни, плочки до касата + силикон; потвърдете цвета дъб; монтаж ~25–60 € отгоре</span></td><td>1 бр.</td><td><a href="https://bazar.bg/obiava-55086543/vrata-za-bania-novi-aluminievi-vrati-za-bani-i-sanitarni-pomeshteniia" target="_blank" rel="noopener">Ал. врата за баня 60 см + WC брава</a><span class="nt">Борса врати · София</span></td><td class="num">156,00 €</td><td class="num">156,00 €</td></tr><tr class="sub"><td colspan="4">Общо малка баня</td><td class="num">1 689,09 €</td></tr></tbody></table></div>
+    <p class="fine">Не са включени: лепила, замазки, хидроизолация, фуги, тръби, кабели, крепежи, боя и труд. Външните ъгли на плочките се режат на 45°, без лайсни. Плотовете с жив ръб са по договаряне и не са в сумата. Вратите на стаите се запазват; цената на пералнята е по eMAG и не е в сумата. Цените са от сайтовете към 09.10.2026 и наличностите не са проверени.</p>
+  </section>
+
+  <section class="notes">
+    <div><h3>Размери</h3><p>Помещение 226 × 166 см. Ревизия в горния десен ъгъл 31 × 51 см. Колона до вратата 71 × 21 см. Врата 74 см, отваря навън, 77 см от левия ъгъл. Височина на тавана не е дадена; моделът е с 250 см.</p></div>
+    <div><h3>Разпределение</h3><p>Душ колона с външна батерия на лявата стена, без паравани; целият под е с наклон към линеен сифон до задната стена. Окачена тоалетна на инсталация до щранга, в зона 85 см. Мивка със стояща батерия върху дървен плот с жив ръб от стена до стена (94 × 35 см, 5 см дебел, без шкаф) на дясната стена срещу душа, вдясно от вратата. Над нея е хоризонтален бойлер 80 л (около 85 × Ø44 см), окачен на около 190–236 см. Огледалото е между мивката и шкафа.</p></div>
+    <div><h3>Коридор</h3><p>Построен по вашата скица: стени 77 + 80 (баня), стъпки 25 и 12, ниша 77, вход 135, дясна стена 65 + 60 + 10, долна 10 + 85 + 80 + 60, диагонали 112 и 100, лява стена 110. Входната врата е приета за 90 см, вратите на диагонала и на лявата стена за 80 см. Пералнята е в нишата от 77 см, опряна вдясно, на 20 см от вратата на банята.</p></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+(function(){
+const H = 250; // assumed ceiling height, cm
+
+/* ---------- concepts ---------- */
+const CONCEPTS = [
+ { id:'a', name:'Графит и светло сиво', short:'Светло сиви плочки, черен мат',
+   about:'Едроформатни светло сиви плочки от пода до тавана и матово черни акценти: душ комплект, батерии, плот за казанчето, огледало. Мивката стои върху плот от светъл дъб с жив ръб, който топли сивото и черното.',
+   palette:[['Сиви плочки 60×120','#d4d5d3'],['Под 60×60','#a9abaa'],['Черен мат','#1d1d1d'],['Светъл дъб','#c6a57c'],['Бяла керамика','#f4f4f2']],
+   specs:[['Стени','60×120 светло сиво, мат, до тавана'],['Под','60×60 графитено сиво, R10'],['Душ','Външна батерия с душ колона, без паравaн; черен мат'],['Метал','Черен мат'],['Мивка','Дъбов плот с жив ръб на черни конзоли, правоъгълна мивка, стояща батерия'],['Бойлер','Хоризонтален 80 л над мивката (~85 × Ø44 см)']],
+   floor:{tw:60,th:60,base:'#a7a9a8',grout:'#959796',vary:.025,finish:'stone',rough:.6},
+   wall:{tw:60,th:120,base:'#d5d6d4',grout:'#c3c4c2',vary:.015,finish:'stone',rough:.5},
+   wainscot:H, paint:'#e9e9e7', shower:null, trim:null,
+   metal:{color:'#1c1c1c',metalness:.35,roughness:.5},
+   vanity:{body:'oak',top:'#1f1f1f',basin:'rect',fluted:false},
+   cab:{color:'#cfd0ce',rough:.55},
+   mirror:'rect', screen:'none', ledgeTop:'#1f1f1f', door:'#e3e3e1', ceiling:'#f4f4f2' },
+ { id:'b', name:'Скандинавско дърво', short:'Избран вариант · бели плочки, дърво, месинг',
+   about:'Под с дървесна шарка, топло бели плочки 60×120, вертикално до 240 см; горните 10 см под тавана са боядисани в същия тон.',
+   palette:[['Плочки 60×120','#f1eee8'],['Под дърво','#b98f62'],['Светла фуга','#d9d5cd'],['Месинг','#b8925a'],['Дъб','#c29b6b']],
+   specs:[['Стени','60×120 топло бяло, мат/сатен, вертикално до 240 см; над тях боя в същия тон'],['Дърво','Дъб с жив ръб: плот на мивката и плот над казанчето'],['Под','20×120 гранитогрес с дървесна шарка'],['Душ','Външна батерия с душ колона; месинг'],['Метал','Шлифован месинг'],['Мивка','Дъбов плот с жив ръб на месингови конзоли, кръгла мивка, стояща батерия'],['Бойлер','Хоризонтален 80 л над мивката (~85 × Ø44 см)']],
+   floor:{tw:120,th:20,base:'#b98f62',grout:'#8f6c48',vary:.06,finish:'wood',rough:.6,pattern:'brick'},
+   wall:{tw:60,th:120,base:'#f1eee8',grout:'#e2ddd4',vary:.006,finish:'stone',rough:.32,gw:.2,cols:2,rows:2},
+   wainscot:240, paint:'#f1eee8', shower:null, trim:null,
+   metal:{color:'#b8925a',metalness:.9,roughness:.32},
+   vanity:{body:'oak',top:'#efece6',basin:'round',fluted:false},
+   cab:{color:'oak',rough:.6},
+   mirror:'round', screen:'none', ledgeTop:'#c29b6b', door:'#f1efea', ceiling:'#f7f5f1' },
+ { id:'c', name:'Маслинено и терацо', short:'Зелени плочки, терацо, бронз',
+   about:'Ръчно изглеждащи маслинено зелени плочки 7,5×15 във вертикал, под от терацо и бронзови акценти. Около душа зелените плочки стигат до тавана.',
+   palette:[['Зелени плочки 7,5×15','#5f6f52'],['Терацо 60×60','#d9d2c6'],['Гипсова боя','#d8cfc2'],['Бронз','#6e5c45'],['Орех','#6b4a32']],
+   specs:[['Стени','7,5×15 маслинено зелено до 130 см; в душа до тавана'],['Над плочките','Варова боя, топло бежово'],['Под','Терацо 60×60'],['Душ','Външна батерия с душ колона; бронз'],['Метал','Матиран бронз'],['Мивка','Орехов плот с жив ръб на бронзови конзоли, овална мивка, стояща батерия'],['Бойлер','Хоризонтален 80 л над мивката (~85 × Ø44 см)']],
+   floor:{tw:60,th:60,base:'#d9d2c6',grout:'#c9c1b4',vary:.02,finish:'terrazzo',rough:.45},
+   wall:{tw:7.5,th:15,base:'#5f6f52',grout:'#a6a596',vary:.09,finish:'zellige',rough:.15},
+   wainscot:130, paint:'#d8cfc2', shower:{h:H}, trim:'metal',
+   metal:{color:'#6e5c45',metalness:.85,roughness:.38},
+   vanity:{body:'walnut',top:'terrazzo',basin:'oval',fluted:true},
+   cab:{color:'walnut',rough:.55},
+   mirror:'arch', screen:'none', ledgeTop:'terrazzo', door:'#e4ddd2', ceiling:'#f1ece4' }
+];
+
+CONCEPTS.splice(0,CONCEPTS.length,...CONCEPTS.filter(c=>c.id==='b'));
+const VIEWS = [
+ {name:'От вратата', pos:[114,158,160], tgt:[82,112,20], fov:70},
+ {name:'Към душа', pos:[168,150,138], tgt:[25,108,35], fov:68},
+ {name:'Към тоалетната', pos:[140,150,150], tgt:[150,80,8], fov:68},
+ {name:'Към мивката', pos:[50,140,135], tgt:[215,150,98], fov:74},
+ {name:'Отгоре', pos:[113,560,330], tgt:[113,30,83], fov:40, doll:true}
+];
+
+/* ---------- utils ---------- */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hex2rgb(h){h=h.replace('#','');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]}
+function shade(h,f){return 'rgb('+hex2rgb(h).map(v=>Math.max(0,Math.min(255,Math.round(v*(1+f))))).join(',')+')'}
+
+const texCache = {};
+function tileTexture(s, key){
+  if(texCache[key]) return texCache[key];
+  const r = rng(key.split('').reduce((a,c)=>a*31+c.charCodeAt(0)|0,7));
+  const cols = s.cols || Math.max(2, Math.min(8, Math.round(120/s.tw)));
+  let rows = s.rows || Math.max(2, Math.min(8, Math.round(120/s.th)));
+  if(s.pattern==='brick' && rows%2) rows++;
+  const bw = cols*s.tw, bh = rows*s.th;
+  const ppc = Math.min(1024/bw, 1024/bh, 12);
+  const cv = document.createElement('canvas'); cv.width=Math.round(bw*ppc); cv.height=Math.round(bh*ppc);
+  const g = cv.getContext('2d');
+  g.fillStyle = s.grout; g.fillRect(0,0,cv.width,cv.height);
+  const gw = Math.max(1, (s.gw||0.25)*ppc);
+  const colorsRow = [];
+  for(let ri=0;ri<rows;ri++){ colorsRow.push([]); for(let c=0;c<cols;c++) colorsRow[ri].push((r()-.5)*2*s.vary); }
+  for(let ri=0;ri<rows;ri++){
+    const off = (s.pattern==='brick' && ri%2) ? s.tw/2 : 0;
+    for(let c=-1;c<=cols;c++){
+      const ci = ((c%cols)+cols)%cols;
+      const x = (c*s.tw+off)*ppc, y=ri*s.th*ppc, w=s.tw*ppc, h=s.th*ppc;
+      g.save(); g.beginPath(); g.rect(x+gw/2,y+gw/2,w-gw,h-gw); g.clip();
+      g.fillStyle = shade(s.base, colorsRow[ri][ci]); g.fillRect(x,y,w,h);
+      const lr = rng(ri*97+ci*13+5);
+      if(s.finish==='stone'){
+        g.globalAlpha=.05; for(let k=0;k<5;k++){g.strokeStyle=lr()<.5?'#ffffff':'#6b6d6c';g.lineWidth=ppc*(0.3+lr()*0.8);g.beginPath();g.moveTo(x+lr()*w,y);g.bezierCurveTo(x+lr()*w,y+h*.3,x+lr()*w,y+h*.7,x+lr()*w,y+h);g.stroke();}
+        g.globalAlpha=.06; for(let k=0;k<w*h/90;k++){g.fillStyle=lr()<.5?'#000':'#fff';g.fillRect(x+lr()*w,y+lr()*h,1.5,1.5);}
+      } else if(s.finish==='wood'){
+        g.globalAlpha=.16; const n=Math.round(h/3);
+        for(let k=0;k<n;k++){g.strokeStyle=lr()<.6?'#5a3d22':'#e2bf92';g.lineWidth=0.6+lr()*1.6;const yy=y+lr()*h;g.beginPath();g.moveTo(x,yy);g.bezierCurveTo(x+w*.33,yy+(lr()-.5)*6,x+w*.66,yy+(lr()-.5)*6,x+w,yy+(lr()-.5)*4);g.stroke();}
+        g.globalAlpha=.12; for(let k=0;k<3;k++){g.fillStyle='#4a321c';g.beginPath();g.ellipse(x+lr()*w,y+lr()*h,6+lr()*10,2+lr()*3,0,0,7);g.fill();}
+      } else if(s.finish==='terrazzo'){
+        const pal=['#8a8f7a','#b9a58c','#6f6a60','#f3eee6','#5e7058','#c4b49d'];
+        g.globalAlpha=.9; for(let k=0;k<w*h/55;k++){g.fillStyle=pal[Math.floor(lr()*pal.length)];const cx=x+lr()*w,cy=y+lr()*h,rr=ppc*(0.15+lr()*lr()*1.4);g.beginPath();for(let q=0;q<5;q++){const a=q/5*6.28+lr();g.lineTo(cx+Math.cos(a)*rr*(0.6+lr()*.6),cy+Math.sin(a)*rr*(0.6+lr()*.6));}g.fill();}
+      } else if(s.finish==='zellige'){
+        const gr=g.createRadialGradient(x+w*lr(),y+h*lr(),2,x+w/2,y+h/2,Math.max(w,h));gr.addColorStop(0,'rgba(255,255,255,.16)');gr.addColorStop(1,'rgba(0,0,0,.18)');g.fillStyle=gr;g.fillRect(x,y,w,h);
+        g.globalAlpha=.25;g.strokeStyle='#26301f';g.lineWidth=ppc*.35;g.strokeRect(x+gw,y+gw,w-2*gw,h-2*gw);
+      } else if(s.finish==='gloss'){
+        const gr=g.createLinearGradient(x,y,x,y+h);gr.addColorStop(0,'rgba(255,255,255,.25)');gr.addColorStop(1,'rgba(0,0,0,.05)');g.fillStyle=gr;g.fillRect(x,y,w,h);
+      }
+      g.restore();
+    }
+  }
+  const t = new THREE.CanvasTexture(cv); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.encoding=THREE.sRGBEncoding; t.anisotropy=8;
+  t.userData={bw,bh};
+  return texCache[key]=t;
+}
+function woodTexture(kind){
+  const base = kind==='walnut' ? {tw:200,th:12,base:'#6b4a32',grout:'#6b4a32',vary:.07,finish:'wood',gw:0.01} : {tw:200,th:12,base:'#c6a57c',grout:'#c6a57c',vary:.05,finish:'wood',gw:0.01};
+  return tileTexture(base, 'wood-'+kind);
+}
+const TERRAZZO = {tw:60,th:60,base:'#d9d2c6',grout:'#d9d2c6',vary:0,finish:'terrazzo',gw:.01};
+
+/* ---------- scene builder ---------- */
+let renderer, stillRenderer, pmrem, envTex;
+function initRenderers(){
+  stillRenderer = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+  stillRenderer.setPixelRatio(1); stillRenderer.setSize(1200,900);
+  setupR(stillRenderer);
+  pmrem = new THREE.PMREMGenerator(stillRenderer);
+  envTex = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
+}
+function setupR(r){ r.outputEncoding=THREE.sRGBEncoding; r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=0.82; r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap; }
+
+function build(C){
+  const scene = new THREE.Scene();
+  scene.environment = envTex;
+  scene.background = new THREE.Color('#cfd3d1');
+  const walls = [];
+  const M = (o)=>new THREE.MeshStandardMaterial(Object.assign({envMapIntensity:.35},o));
+  const metal = M(C.metal);
+  const white = M({color:'#f6f6f4',roughness:.18,envMapIntensity:.8});
+  const add = (geo, mat, x,y,z, cast=true)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;scene.add(m);return m;};
+  const box = (w,h,d,mat,x,y,z,cast)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z,cast); // x,y,z = center
+  const woodMat = (kind, rough=.55, rot)=>{ const t=woodTexture(kind).clone(); t.needsUpdate=true; t.repeat.set(1/100,1/40); return M({map:t,roughness:rough}); };
+  const surfMat = (spec,key,w,h)=>{ const t=tileTexture(spec,key).clone(); t.needsUpdate=true; t.repeat.set(w/t.userData.bw,h/t.userData.bh); return M({map:t,roughness:spec.rough,side:THREE.DoubleSide}); };
+  const plainMat = (c,rough=.9)=>M({color:c,roughness:rough,side:THREE.DoubleSide,envMapIntensity:.3});
+  // live-edge wood slab: pts = closed outline in plan (x,z); top surface at y
+  function liveSlab(pts, yTop, th, kind, alongZ){
+    const t=woodTexture(kind).clone(); t.needsUpdate=true; t.repeat.set(1/90,1/30); if(alongZ) t.rotation=Math.PI/2;
+    const top=M({map:t,roughness:.42}), edge=M({color:kind==='walnut'?'#4a3121':'#8a6a45',roughness:.85});
+    const sh=new THREE.Shape(); pts.forEach((p,i)=>i?sh.lineTo(p[0],p[1]):sh.moveTo(p[0],p[1])); sh.closePath();
+    const m=new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:th,bevelEnabled:true,bevelThickness:.4,bevelSize:.5,bevelSegments:2,curveSegments:8}),[top,edge]);
+    m.rotation.x=Math.PI/2; m.position.y=yTop-0.4; m.castShadow=true; m.receiveShadow=true; scene.add(m); return m;
+  }
+  function wavy(a,b,base,amp,seed,step=2){ const r=rng(seed), out=[]; const dir=b>a?1:-1;
+    for(let u=a; dir>0?u<=b:u>=b; u+=dir*step){ out.push([u, base+Math.sin(u*0.09+seed)*amp+Math.sin(u*0.23+seed*2)*amp*.45+(r()-.5)*amp*.3]); } return out; }
+  function plane(x1,z1,x2,z2,y0,y1,mat,off=0,track=true){
+    const L=Math.hypot(x2-x1,z2-z1), dx=(x2-x1)/L, dz=(z2-z1)/L, nx=-dz, nz=dx;
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(L,y1-y0),mat);
+    m.position.set((x1+x2)/2+nx*off,(y0+y1)/2,(z1+z2)/2+nz*off);
+    m.rotation.y=-Math.atan2(z2-z1,x2-x1); m.receiveShadow=true; scene.add(m);
+    if(track) walls.push({m,px:(x1+x2)/2,pz:(z1+z2)/2,nx,nz});
+    return m;
+  }
+  function tiledWall(x1,z1,x2,z2,y0,y1,spec,key,off=0){ const L=Math.hypot(x2-x1,z2-z1); const m=plane(x1,z1,x2,z2,y0,y1,surfMat(spec,key,L,y1-y0),off); m.material.map.offset.set(0,y0/m.material.map.userData.bh); return m; }
+
+  // room outline (plan coords x→right, z→down), traversed so inward normal = (-dz,dx)
+  const segs=[[0,0,195,0],[195,0,195,51],[195,51,226,51],[226,51,226,145],[226,145,155,145],[155,145,155,166],[155,166,151,166],[77,166,0,166],[0,166,0,0]];
+  const wk = C.wainscot;
+  segs.forEach((s,i)=>{
+    tiledWall(...s,0,wk,C.wall,'wall-'+C.id);
+    if(wk<H) plane(...s,wk,H,plainMat(C.paint));
+    if(wk<H && C.trim){ const L=Math.hypot(s[2]-s[0],s[3]-s[1]); const t=new THREE.Mesh(new THREE.BoxGeometry(L,1.2,1),metal); t.position.set((s[0]+s[2])/2-(s[3]-s[1])/L*0.4,wk,(s[1]+s[3])/2+(s[2]-s[0])/L*0.4); t.rotation.y=-Math.atan2(s[3]-s[1],s[2]-s[0]); scene.add(t); walls[walls.length-1].extra=t; }
+  });
+  // door header
+  if(wk<H){ if(wk>205) tiledWall(151,166,77,166,205,wk,C.wall,'wall-'+C.id); plane(151,166,77,166,Math.max(205,wk),H,plainMat(C.paint)); }
+  else plane(151,166,77,166,205,H,surfMat(C.wall,'wall-'+C.id,74,H-205));
+  // shower walls full-height override
+  if(C.shower){
+    tiledWall(0,0,110,0,0,C.shower.h,C.wall,'wall-'+C.id,0.3);
+    tiledWall(0,90,0,0,0,C.shower.h,C.wall,'wall-'+C.id,0.3);
+  }
+
+  // floor & ceiling
+  const shape=new THREE.Shape(); [[0,0],[195,0],[195,51],[226,51],[226,145],[155,145],[155,166],[0,166]].forEach((p,i)=>i?shape.lineTo(p[0],p[1]):shape.moveTo(p[0],p[1]));
+  const fg=new THREE.ShapeGeometry(shape); const ft=tileTexture(C.floor,'floor-'+C.id).clone(); ft.needsUpdate=true; ft.repeat.set(1/ft.userData.bw,1/ft.userData.bh);
+  const floor=new THREE.Mesh(fg,M({map:ft,roughness:C.floor.rough})); floor.rotation.x=Math.PI/2; floor.receiveShadow=true; scene.add(floor);
+  // shapes are in x,y; rotation.x=+90° maps y→z (plan down) but faces down; flip side
+  floor.material.side=THREE.DoubleSide;
+  const ceil=new THREE.Mesh(fg,plainMat(C.ceiling)); ceil.rotation.x=Math.PI/2; ceil.position.y=H; scene.add(ceil);
+  // floor under door
+  box(74,1,12,M({color:'#9a9c9b',roughness:.6}),114,0.5,171,false);
+
+  /* --- door (opens outward, shown closed) --- */
+  const doorMat=M({color:C.door,roughness:.5});
+  box(74,203,4,doorMat,114,101.5,169,false);
+  box(4,205,8,doorMat,79,102.5,168,false); box(4,205,8,doorMat,149,102.5,168,false); box(74,4,8,doorMat,114,205,168,false);
+  const hd=box(14,2,3,metal,88,100,166.2,false);
+
+  /* --- revision shaft access panel (west face x=195) --- */
+  const rp=box(0.6,34,34,M({color:shade(C.wall.base,.03),roughness:.4}),194.6,150,25,false);
+  box(0.5,34.6,0.8,metal,194.5,150,8,false); box(0.5,34.6,0.8,metal,194.5,150,42,false);
+  box(0.5,0.8,34,metal,194.5,167,25,false); box(0.5,0.8,34,metal,194.5,133,25,false);
+
+  /* --- ledge with concealed cistern: x110-195, z0-20, h112 --- */
+  const ledgeH=112;
+  tiledWall(110,20,195,20,0,ledgeH,C.wall,'wall-'+C.id,0); walls.pop();
+  tiledWall(195,0,195,20,0,ledgeH,C.wall,'wall-'+C.id,-0.3); walls.pop();
+  const ledgeTopMat = C.ledgeTop==='terrazzo' ? (()=>{const t=tileTexture(TERRAZZO,'tz').clone();t.needsUpdate=true;t.repeat.set(1/60,1/60);return M({map:t,roughness:.35});})() : (C.ledgeTop.startsWith('#c2')? woodMat('oak',.5) : M({color:C.ledgeTop,roughness:.45}));
+  if(C.id==='b'){ // live-edge oak on the cistern ledge, front edge overhangs 3-6 cm
+    const f=wavy(195,110,24.5,1.6,3); liveSlab([[110,0],[195,0],...f], ledgeH+4, 4, 'oak', false);
+  } else box(87,3,23,ledgeTopMat,152.5,ledgeH+1.5,10.5);
+  box(22,15,1,metal,152.5,95,20.6,false); box(9,11,0.4,M({color:shade(C.metal.color,-.25),roughness:.4}),148,95,21.2,false); box(9,11,0.4,M({color:shade(C.metal.color,-.25),roughness:.4}),157,95,21.2,false);
+  // small decor on ledge
+  add(new THREE.CylinderGeometry(5,5,16,24),M({color:C.id==='a'?'#2a2a2a':C.id==='b'?'#e9e2d6':'#c9b79b',roughness:.4}),130,ledgeH+11,9);
+  add(new THREE.CylinderGeometry(1.2,1.2,26,8),M({color:'#6e7f5a',roughness:.8}),130,ledgeH+28,9);
+
+  /* --- wall-hung toilet, center x=152.5 --- */
+  const bowl=add(new THREE.CylinderGeometry(17,13,30,48),white,152.5,26,47); bowl.scale.set(1,1,1.45);
+  box(34,30,10,white,152.5,26,25);
+  const seat=add(new THREE.CylinderGeometry(17.6,17.6,2.4,48),white,152.5,42.2,48); seat.scale.set(1,1,1.42);
+  const lid=add(new THREE.CylinderGeometry(17.2,17.2,1.6,48),M({color:'#fafaf8',roughness:.3}),152.5,44.2,48); lid.scale.set(1,1,1.42);
+  // paper holder on revision face? on right of ledge: on shaft west face
+  box(1.2,1.2,14,metal,194,70,32,false);
+  add(new THREE.CylinderGeometry(5.5,5.5,11,24),M({color:'#fbfbf9',roughness:.9}),188,64,32).rotation.x=Math.PI/2;
+
+  /* --- shower zone x0-110, z0-90 --- */
+  // linear drain along back wall
+  box(96,0.4,5,metal,55,0.3,6,false); box(92,0.5,1.2,M({color:'#111',roughness:.6}),55,0.35,6,false);
+  // thermostat + slide bar on left wall
+  // exposed (surface-mounted) shower mixer + shower column on the left wall, centred z=45
+  [37.5,52.5].forEach(z=>{const e=add(new THREE.CylinderGeometry(1.4,1.4,5,14),metal,2.5,105,z,false); e.rotation.z=Math.PI/2;});
+  const mx=add(new THREE.CylinderGeometry(2.8,2.8,30,24),metal,6,105,45); mx.rotation.x=Math.PI/2;
+  [28.5,61.5].forEach(z=>{const k=add(new THREE.CylinderGeometry(3.2,3.2,4,24),metal,6,105,z); k.rotation.x=Math.PI/2;});
+  add(new THREE.CylinderGeometry(1.3,1.3,98,16),metal,6,157,45);           // riser
+  const br=add(new THREE.CylinderGeometry(.9,.9,6,10),metal,3,185,45,false); br.rotation.z=Math.PI/2; // wall bracket
+  const arm=add(new THREE.CylinderGeometry(1.2,1.2,28,14),metal,20,206,45); arm.rotation.z=Math.PI/2;
+  add(new THREE.SphereGeometry(1.6,14,10),metal,6,206,45,false);
+  add(new THREE.CylinderGeometry(1.1,1.1,4,12),metal,34,204,45,false);
+  if(C.id==='a') box(26,1.4,26,metal,34,201.5,45); else add(new THREE.CylinderGeometry(13,13,1.4,40),metal,34,201.5,45);
+  // hand shower in a holder on the riser
+  box(3,3,4,metal,6,140,49,false);
+  const hh=add(new THREE.CylinderGeometry(1.5,1.1,20,12),metal,7,146,52); hh.rotation.x=.18;
+  add(new THREE.CylinderGeometry(3.4,3.4,1.2,20),metal,7,156,53.8,false).rotation.x=Math.PI/2-0.18;
+  const hose=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(7,136,51),new THREE.Vector3(9,112,56),new THREE.Vector3(8,98,54),new THREE.Vector3(6,102,47)]),30,.6,8),metal); scene.add(hose);
+  // niche on back wall inside shower (fake recess)
+  const nicheMat=M({color:shade(C.wall.base,-.12),roughness:.4});
+  plane(25,0,75,0,112,142,nicheMat,0.6,false);
+  box(50,1.5,9,C.id==='b'?metal:ledgeTopMat,50,112,4.5,false);
+  box(50,0.8,1,M({color:'#fff6e0',emissive:'#ffe9c2',emissiveIntensity:1.4}),50,141.5,1.2,false);
+  [[38,'#f0efe9'],[50,'#2b2b2b'],[60,'#c9b79b']].forEach(([x,c],i)=>add(new THREE.CylinderGeometry(3,3,14-i*2,20),M({color:c,roughness:.35}),x,120-i,6));
+
+  // separation
+  if(C.screen==='grid'){
+    const gl=new THREE.MeshStandardMaterial({color:'#dfe9ea',transparent:true,opacity:.14,roughness:.05,metalness:0,envMapIntensity:1.2,depthWrite:false,side:THREE.DoubleSide});
+    const g=new THREE.Mesh(new THREE.PlaneGeometry(90,200),gl); g.rotation.y=Math.PI/2; g.position.set(110,100,45); scene.add(g);
+    box(2.4,200,2.4,metal,110,100,1.2,false); box(2.4,200,2.4,metal,110,100,89,false);
+    [0,66,133,200].forEach(y=>box(2.4,2.4,90,metal,110,Math.max(1.2,Math.min(y,198.8)),45,false));
+    box(2.4,200,1.6,metal,110,100,45,false);
+    box(1.2,1.2,60,metal,110,215,60,false); // stabiliser bar to ceiling? keep as wall bar
+  } else if(C.screen==='curtain'){
+    // ceiling track + linen curtain gathered near back wall
+    box(1.6,1.6,90,metal,110,H-4,45,false);
+    const cg=new THREE.PlaneGeometry(30,205,40,1); const pos=cg.attributes.position; for(let i=0;i<pos.count;i++){const x=pos.getX(i);pos.setZ(i,Math.sin(x*0.95)*3.2);} cg.computeVertexNormals();
+    const cm=new THREE.Mesh(cg,M({color:'#e6ddcd',roughness:.95,side:THREE.DoubleSide})); cm.rotation.y=Math.PI/2; cm.position.set(110,H-6-102.5,16); cm.castShadow=true; scene.add(cm);
+  } else if(C.screen==='wall'){
+    const tm = surfMat(C.wall,'wall-'+C.id,90,110);
+    box(8,110,90,[tm,tm,ledgeTopMat,ledgeTopMat,tm,tm],110,55,45);
+    // reeded glass above
+    const rc=document.createElement('canvas'); rc.width=256; rc.height=8; const rg=rc.getContext('2d');
+    for(let i=0;i<256;i++){const v=Math.sin(i/256*Math.PI*2*16); rg.fillStyle=`rgba(255,255,255,${0.25+0.35*v*v})`; rg.fillRect(i,0,1,8);}
+    const rt=new THREE.CanvasTexture(rc); rt.wrapS=THREE.RepeatWrapping; rt.repeat.set(4,1);
+    const gl=new THREE.MeshStandardMaterial({color:'#e8efe9',map:rt,transparent:true,opacity:.55,roughness:.15,envMapIntensity:1,depthWrite:false,side:THREE.DoubleSide});
+    const g=new THREE.Mesh(new THREE.PlaneGeometry(88,90),gl); g.rotation.y=Math.PI/2; g.position.set(110,155,45); scene.add(g);
+    box(2,92,2,metal,110,155,89,false); box(2,2,90,metal,110,201,45,false);
+  }
+
+  /* --- vanity on right wall: x180-226, z70-140 --- */
+  // live-edge wood slab (5 cm) on wall brackets, no cabinet; straight against the wall, natural edge facing the room
+  const slabKind = C.vanity.body;
+  const st = woodTexture(slabKind).clone(); st.needsUpdate=true; st.repeat.set(1/90,1/30); st.rotation=Math.PI/2;
+  const slabTop = M({map:st,roughness:.42});
+  const slabEdge = M({color:slabKind==='walnut'?'#4a3121':'#8a6a45',roughness:.85});
+  const er=rng(slabKind==='walnut'?11:5);
+  const ls=new THREE.Shape(); ls.moveTo(226,51); ls.lineTo(226,145);
+  for(let z=145;z>=51;z-=2){ const x=191+Math.sin(z*0.06)*1.4+Math.sin(z*0.17+1)*0.7+Math.sin(z*0.53)*0.3+(er()-.5)*0.4; ls.lineTo(x,z); }
+  ls.closePath();
+  const slab=new THREE.Mesh(new THREE.ExtrudeGeometry(ls,{depth:5,bevelEnabled:true,bevelThickness:.4,bevelSize:.5,bevelSegments:2,curveSegments:8}),[slabTop,slabEdge]);
+  slab.rotation.x=Math.PI/2; slab.position.y=77-0.4; slab.castShadow=true; slab.receiveShadow=true; scene.add(slab);
+  // brackets + exposed bottle trap
+  [66,130].forEach(z=>{ box(22,1.5,4,metal,215,71.2,z,false); box(1.5,14,4,metal,225,64,z,false); });
+  add(new THREE.CylinderGeometry(1.6,1.6,16,16),metal,207,64,98,false);
+  add(new THREE.CylinderGeometry(2.8,2.8,9,20),metal,207,54,98,false);
+  const tp=add(new THREE.CylinderGeometry(1.6,1.6,19,16),metal,216.5,53,98,false); tp.rotation.z=Math.PI/2;
+  // small basket under the slab
+  add(new THREE.CylinderGeometry(13,11,26,28),M({color:C.id==='a'?'#3a3a3a':C.id==='b'?'#cdb48d':'#8f7a5c',roughness:.95}),208,13,74);
+  // basin
+  if(C.vanity.basin==='rect'){ box(30,12,40,white,207,83,98); box(26,0.6,36,M({color:'#e9ebe9',roughness:.2}),207,88.8,98,false); add(new THREE.CylinderGeometry(1.8,1.8,.5,16),metal,207,89.2,98,false); }
+  else { const r = C.vanity.basin==='oval'?15:16; const s = new THREE.Mesh(new THREE.SphereGeometry(r,48,24,0,Math.PI*2,Math.PI/2,Math.PI/2),white); s.material=s.material.clone(); s.material.side=THREE.DoubleSide; s.scale.set(1,0.62,C.vanity.basin==='oval'?1.3:1); s.position.set(207,77+r*0.62,98); s.castShadow=true; scene.add(s);
+    const rim=new THREE.Mesh(new THREE.TorusGeometry(r,0.7,10,60),white); rim.rotation.x=Math.PI/2; rim.scale.set(1,C.vanity.basin==='oval'?1.3:1,1); rim.position.set(207,77+r*0.62,98); scene.add(rim); }
+  // wall faucet from right wall
+  // standing (deck-mounted) mixer beside the basin, spout reaching over it (slab is only 35 cm deep)
+  add(new THREE.CylinderGeometry(2.4,2.4,1,24),metal,207,77.5,124,false);
+  add(new THREE.CylinderGeometry(1.7,1.9,28,20),metal,207,91.5,124);
+  const sp=add(new THREE.CylinderGeometry(1.2,1.2,16,16),metal,207,104.2,116.5); sp.rotation.x=Math.PI/2;
+  add(new THREE.CylinderGeometry(1,1,2.5,12),metal,207,103,108.8,false);
+  const lev=add(new THREE.CylinderGeometry(.7,.7,7,12),metal,212,102,124); lev.rotation.z=Math.PI/2-0.3;
+  // horizontal water heater above the sink (right of the door): Ø42, length 80, axis along the wall
+  const bw=M({color:'#f2f2f0',roughness:.3,envMapIntensity:.6});
+  const bo=add(new THREE.CylinderGeometry(22,22,79,48),bw,203,214,98); bo.rotation.x=Math.PI/2;
+  [58.5,137.5].forEach((z,i)=>{ const cap=add(new THREE.SphereGeometry(22,40,20,0,Math.PI*2,0,Math.PI/2),bw,203,214,z); cap.scale.set(1,0.14,1); cap.rotation.x=i?Math.PI/2:-Math.PI/2; });
+  box(6,6,60,metal,224,214,98,false); // wall bracket
+  const dial=add(new THREE.CylinderGeometry(4,4,1,24),M({color:'#e4e4e2',roughness:.4}),195,199,137.4,false); dial.rotation.x=Math.PI/2;
+  // supply pipes into the wall
+  [92,104].forEach(z=>{ const p=add(new THREE.CylinderGeometry(1,1,12,10),metal,212,190,z,false); });
+  box(30,0.6,64,M({color:'#ffe9c2',emissive:'#ffd9a0',emissiveIntensity:.9}),214,192.6,98,false).visible=false;
+  // mirror on right wall, centered z=105
+  const mirMat=new THREE.MeshStandardMaterial({color:'#e8eceb',metalness:1,roughness:.04,envMapIntensity:1.1});
+  let mshape=new THREE.Shape(), fshape;
+  if(C.mirror==='rect'){ mshape.moveTo(-26,-24);mshape.lineTo(26,-24);mshape.lineTo(26,24);mshape.lineTo(-26,24);mshape.closePath();
+    fshape=new THREE.Shape();fshape.moveTo(-28,-26);fshape.lineTo(28,-26);fshape.lineTo(28,26);fshape.lineTo(-28,26);fshape.closePath();fshape.holes.push(mshape); }
+  else if(C.mirror==='round'){ mshape.absarc(0,0,24,0,Math.PI*2); fshape=new THREE.Shape(); fshape.absarc(0,0,26,0,Math.PI*2); const hp=new THREE.Path(); hp.absarc(0,0,24,0,Math.PI*2,true); fshape.holes.push(hp); }
+  else { const arch=(w,hh,s)=>{s.moveTo(-w,-hh);s.lineTo(w,-hh);s.lineTo(w,hh-w);s.absarc(0,hh-w,w,0,Math.PI,false);s.lineTo(-w,-hh);return s;};
+    arch(21,24,mshape); fshape=arch(23,26,new THREE.Shape()); const hp=arch(21,24,new THREE.Path()); fshape.holes.push(hp); }
+  const mm=new THREE.Mesh(new THREE.ShapeGeometry(mshape,48),mirMat); mm.rotation.y=-Math.PI/2; mm.position.set(224.3,135,98); scene.add(mm);
+  const fm=new THREE.Mesh(new THREE.ExtrudeGeometry(fshape,{depth:1.6,bevelEnabled:false,curveSegments:48}),metal); fm.rotation.y=-Math.PI/2; fm.position.set(224.9,135,98); scene.add(fm);
+  walls.find(w=>w.nx===-1 && w.pz>60 && w.pz<140).attach=[mm,fm];
+  // towels
+  box(4,40,28,M({color:C.id==='a'?'#8e9190':C.id==='b'?'#efe8dc':'#c9bfae',roughness:1}),180+4,55,105,false).visible=false;
+
+  // plant / basket by door
+  add(new THREE.CylinderGeometry(11,9,30,28),M({color:C.id==='a'?'#2a2a2a':C.id==='b'?'#cdb48d':'#8f7a5c',roughness:.9}),25,15,148);
+
+  /* --- ventilation grille above shower --- */
+  // existing fan stays on the revision shaft, centred on its room-facing (west) side, near the ceiling
+  box(1.4,19,19,M({color:'#f3f3f1',roughness:.5}),194.3,224,25.5,false);
+  for(let k=-6;k<=6;k+=3) box(0.4,13,0.9,M({color:'#c9cbc9',roughness:.6}),193.5,224,25.5+k,false);
+
+  /* --- lights --- */
+  scene.add(new THREE.HemisphereLight('#ffffff','#9d988f',.12));
+  const spots=[[55,45],[150,95],[113,140],[200,105]];
+  spots.forEach(([x,z],i)=>{
+    add(new THREE.CylinderGeometry(4,4,1,24),M({color:'#fff',emissive:'#fff2dc',emissiveIntensity:2}),x,H-0.4,z,false);
+    const L=new THREE.PointLight('#fff1dd', i===1?0.42:0.2, 0, 2); L.position.set(x,H-12,z);
+    if(i===1){L.castShadow=true;L.shadow.mapSize.set(1024,1024);L.shadow.bias=-0.002;L.shadow.radius=6;}
+    L.decay=0; scene.add(L);
+  });
+  const nl=new THREE.PointLight('#ffe2b0',0.12); nl.decay=0; nl.position.set(50,135,12); scene.add(nl);
+
+  scene.userData={walls,ceil};
+  return scene;
+}
+
+function applyDoll(scene,cam,on){
+  const {walls,ceil}=scene.userData; ceil.visible=!on;
+  walls.forEach(w=>{const vis=!on || ((cam.position.x-w.px)*w.nx+(cam.position.z-w.pz)*w.nz)>=0; if(w.m) w.m.visible=vis; if(w.items) w.items.forEach(a=>a.visible=vis); if(w.extra) w.extra.visible=vis; if(w.attach) w.attach.forEach(a=>a.visible=vis);});
+}
+
+function renderStill(scene,v){
+  const cam=new THREE.PerspectiveCamera(v.fov,4/3,1,3000); cam.position.set(...v.pos); cam.lookAt(...v.tgt);
+  applyDoll(scene,cam,!!v.doll);
+  stillRenderer.render(scene,cam);
+  applyDoll(scene,cam,false);
+  return stillRenderer.domElement.toDataURL('image/jpeg',.9);
+}
+
+/* ---------- plan svg ---------- */
+function planSVG(C){
+  const s=2.4, ox=54, oy=34, P=(x,y)=>[ox+x*s,oy+y*s];
+  const pt=(a)=>a.map(([x,y])=>P(x,y).join(',')).join(' ');
+  const room=[[0,0],[195,0],[195,51],[226,51],[226,145],[155,145],[155,166],[0,166]];
+  const W=ox*2+226*s, Hh=oy+166*s+80;
+  const r=(x,y,w,h,cls,lab)=>{const[a,b]=P(x,y);return `<rect x="${a}" y="${b}" width="${w*s}" height="${h*s}" class="${cls}"/>`+(lab?`<text x="${a+w*s/2}" y="${b+h*s/2+4}" class="fl" text-anchor="middle">${lab}</text>`:'');};
+  const dimH=(x1,x2,y,lab,dy=-10)=>{const[a,b]=P(x1,y),[c]=P(x2,y);return `<line x1="${a}" y1="${b+dy}" x2="${c}" y2="${b+dy}" class="dim"/><line x1="${a}" y1="${b+dy-4}" x2="${a}" y2="${b+dy+4}" class="dim"/><line x1="${c}" y1="${b+dy-4}" x2="${c}" y2="${b+dy+4}" class="dim"/><text x="${(a+c)/2}" y="${b+dy-4}" text-anchor="middle" class="dl">${lab}</text>`;};
+  const dimV=(x,y1,y2,lab,dx=-10)=>{const[a,b]=P(x,y1),[,d]=P(x,y2);return `<line x1="${a+dx}" y1="${b}" x2="${a+dx}" y2="${d}" class="dim"/><line x1="${a+dx-4}" y1="${b}" x2="${a+dx+4}" y2="${b}" class="dim"/><line x1="${a+dx-4}" y1="${d}" x2="${a+dx+4}" y2="${d}" class="dim"/><text x="${a+dx-5}" y="${(b+d)/2+4}" text-anchor="end" class="dl">${lab}</text>`;};
+  const [dx1,dy1]=P(77,166),[dx2]=P(151,166);
+  let sep='';
+  if(C.screen==='grid') sep=`<line x1="${P(110,0)[0]}" y1="${P(110,0)[1]}" x2="${P(110,90)[0]}" y2="${P(110,90)[1]}" class="glass"/>`;
+  if(C.screen==='curtain') sep=`<line x1="${P(110,0)[0]}" y1="${P(110,0)[1]}" x2="${P(110,90)[0]}" y2="${P(110,90)[1]}" class="cur"/>`;
+  if(C.screen==='wall') sep=r(106,0,8,90,'solid');
+  const [tx,ty]=P(152.5,47);
+  return `<svg viewBox="0 0 ${W} ${Hh}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="План на банята">
+  <style>.wl{fill:none;stroke:currentColor;stroke-width:3}.dim{stroke:var(--muted);stroke-width:1}.dl{fill:var(--muted);font:11px var(--f-mono)}.fx{fill:var(--chip);stroke:currentColor;stroke-width:1}.wet{fill:rgba(90,140,160,.14);stroke:none}.solid{fill:currentColor;opacity:.55}.fl{fill:currentColor;font:600 10.5px var(--f-body)}.glass{stroke:#5d8fa0;stroke-width:3}.cur{stroke:var(--muted);stroke-width:2;stroke-dasharray:4 3}.sw{fill:none;stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}.rev{fill:var(--chip);stroke:currentColor;stroke-width:1;stroke-dasharray:3 2}</style>
+  <circle cx="${P(14,45)[0]}" cy="${P(14,45)[1]}" r="9" class="fx"/>
+  <text x="${P(30,48)[0]}" y="${P(30,48)[1]}" class="fl">Душ</text>
+  <line x1="${P(6,6)[0]}" y1="${P(6,6)[1]}" x2="${P(102,6)[0]}" y2="${P(102,6)[1]}" stroke="currentColor" stroke-width="3"/>
+  ${r(195,0,31,51,'rev','Ревизия')}
+  <text x="${P(210.5,36)[0]}" y="${P(210.5,36)[1]}" text-anchor="middle" class="fl" style="font-weight:400;font-size:9px">вентилатор</text>
+  ${r(155,145,71,21,'rev','')}
+  ${r(110,0,85,20,'fx','Инсталация')}
+  <ellipse cx="${tx}" cy="${ty}" rx="${17*s}" ry="${24*s}" class="fx"/><text x="${tx}" y="${ty+4}" text-anchor="middle" class="fl">WC</text>
+  ${r(191,51,35,94,'fx','')}
+  ${r(184,58,42,80,'rev','')}
+  <text x="${P(208,100)[0]}" y="${P(208,100)[1]}" text-anchor="middle" class="fl">Мивка</text>
+  <text x="${P(208,112)[0]}" y="${P(208,112)[1]+2}" text-anchor="middle" class="fl" style="font-weight:400">+ хориз. бойлер</text>
+  <text x="${P(208,122)[0]}" y="${P(208,122)[1]+4}" text-anchor="middle" class="fl" style="font-weight:400">над нея</text>
+  ${sep}
+  <polygon points="${pt(room)}" class="wl"/>
+  <line x1="${dx1}" y1="${dy1}" x2="${dx2}" y2="${dy1}" stroke="var(--surface)" stroke-width="5"/>
+  <path d="M ${dx1} ${dy1} L ${dx1} ${dy1+74*s*0.45}" class="sw"/>
+  <path d="M ${dx2} ${dy1} A ${74*s*0.45} ${74*s*0.45} 0 0 1 ${dx1} ${dy1+74*s*0.45}" class="sw"/>
+  <text x="${(dx1+dx2)/2}" y="${dy1+24}" text-anchor="middle" class="fl">Врата</text>
+  ${dimH(0,226,0,'226',-14)}${dimV(0,0,166,'166',-14)}
+  ${dimH(0,77,166,'77',44)}${dimH(77,151,166,'74',44)}${dimH(155,226,145,'71',-8)}
+  ${dimV(226,51,0,'51',38).replace('text-anchor="end"','text-anchor="start"').replace(/x="([\d.]+)" y="([\d.]+)" text-anchor="start"/,(m,a,b)=>`x="${+a+12}" y="${b}" text-anchor="start"`)}
+  ${dimH(195,226,51,'31',14)}
+  ${dimV(226,145,166,'21',38).replace('text-anchor="end"','text-anchor="start"').replace(/x="([\d.]+)" y="([\d.]+)" text-anchor="start"/,(m,a,b)=>`x="${+a+12}" y="${b}" text-anchor="start"`)}
+  </svg>`;
+}
+
+/* ---------- hallway ---------- */
+const HPOLY=[[0,0],[157,0],[157,-25],[234,-25],[234,-37],[369,-37],[369,98],[134,98],[64.86,186.11],[0,110]];
+// door openings per segment i (HPOLY[i] -> HPOLY[i+1]), distances along the segment
+const HOPEN={0:[[77,157,'bath']],4:[[20,110,'front']],5:[[65,125]],6:[[95,175]],8:[[10,90]],9:[[10,90]]};
+const HALL={ id:'h', kind:'hall', name:'Коридор', short:'Паркет от гранитогрес, пералня в нишата',
+  about:'Подът е гранитогрес с вид на естествен дъбов паркет в средно тъмен тон, без прагове. Стените са топло бели, вратите са от дъб, с дървени первази и черни дръжки. В нишата до банята е пералнята под дъбов плот, с шкаф над нея. До входа има шкаф за обувки и закачалка; срещу тях стената остава свободна. Дъбът на вратите и плота над пералнята повтаря дървото от банята „Скандинавско дърво“.',
+  palette:[['Под, тъмен дъб','#7a593c'],['Стени','#ece8e1'],['Врати, дъб','#c29b6b'],['Шкафове','#d8d2c8'],['Черен мат','#1d1d1d']],
+  specs:[['Под','Гранитогрес 20×120, дървесна шарка, среден до тъмен дъб, R10'],['Стени','Миеща се боя, топло бяло'],['Врати','Дъб, 205 см, дървени первази, черни дръжки'],['Пералня','Haier HWD80 slim, пералня със сушилня, антрацит, ~46 см дълбока; в нишата на 20 см от вратата на банята, под дъбов плот'],['Над пералнята','Шкаф 77 × 80 × 35 см до тавана'],['Вход','Шкаф за обувки 24 см и закачалка']],
+  floor:{tw:120,th:20,base:'#694a33',grout:'#3f2e21',vary:.1,finish:'wood',rough:.5,pattern:'brick',gw:.15},
+  wall:'#ece8e1', door:'#e6e1d9', front:'#6b5645', cab:'#d8d2c8', metal:{color:'#1c1c1c',metalness:.35,roughness:.5} };
+CONCEPTS.push(HALL);
+const HVIEWS=[
+ {name:'От входа', pos:[352,162,8], tgt:[40,105,85], fov:74},
+ {name:'Към входа', pos:[40,160,62], tgt:[330,112,-20], fov:74},
+ {name:'Нишата с пералнята', pos:[205,145,95], tgt:[192,100,-25], fov:80},
+ {name:'Към вратите в ъгъла', pos:[235,155,15], tgt:[40,100,140], fov:72},
+ {name:'Отгоре', pos:[185,650,380], tgt:[185,30,60], fov:42, doll:true}
+];
+function viewsFor(i){ const k=CONCEPTS[i].kind; return k==='hall'?HVIEWS:k==='wc'?WVIEWS:VIEWS; }
+
+function buildHall(C){
+  const scene=new THREE.Scene(); scene.environment=envTex; scene.background=new THREE.Color('#cfd3d1');
+  const walls=[]; const M=o=>new THREE.MeshStandardMaterial(Object.assign({envMapIntensity:.35},o));
+  const metal=M(C.metal), white=M({color:'#f6f6f4',roughness:.25});
+  const add=(geo,mat,x,y,z,cast=true)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;scene.add(m);return m;};
+  const box=(w,h,d,mat,x,y,z,cast)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z,cast);
+  const wallMat=M({color:C.wall,roughness:.92,side:THREE.DoubleSide,envMapIntensity:.25});
+  const doorTex=woodTexture('oak').clone(); doorTex.needsUpdate=true; doorTex.center.set(.5,.5); doorTex.rotation=Math.PI/2; doorTex.repeat.set(.55,.5);
+  const doorMat=M({map:doorTex,roughness:.5}), frontMat=M({color:C.front,roughness:.55}), trimMat=M({color:'#f3f0ea',roughness:.5});
+  const frameTex=woodTexture('oak').clone(); frameTex.needsUpdate=true; frameTex.center.set(.5,.5); frameTex.rotation=Math.PI/2; frameTex.repeat.set(.05,.5);
+  const frameMat=M({map:frameTex,roughness:.5});
+  const oak=(()=>{const t=woodTexture('oak').clone();t.needsUpdate=true;t.repeat.set(1/100,1/40);return M({map:t,roughness:.5});})();
+  const cabMat=M({color:C.cab,roughness:.6});
+  const geom=(p,q)=>{const L=Math.hypot(q[0]-p[0],q[1]-p[1]),dx=(q[0]-p[0])/L,dz=(q[1]-p[1])/L;return{L,dx,dz,nx:-dz,nz:dx};};
+  function segBox(p,q,s0,len,y0,h,depth,off,mat,cast=false){
+    const g=geom(p,q),c=s0+len/2,m=new THREE.Mesh(new THREE.BoxGeometry(len,h,depth),mat);
+    m.position.set(p[0]+g.dx*c+g.nx*off,y0+h/2,p[1]+g.dz*c+g.nz*off); m.rotation.y=-Math.atan2(g.dz,g.dx); m.castShadow=cast; m.receiveShadow=true; scene.add(m); return m; }
+  function seg(p,q,s0,s1,y0,y1){
+    const g=geom(p,q),len=s1-s0,c=s0+len/2,m=new THREE.Mesh(new THREE.PlaneGeometry(len,y1-y0),wallMat);
+    m.position.set(p[0]+g.dx*c,(y0+y1)/2,p[1]+g.dz*c); m.rotation.y=-Math.atan2(g.dz,g.dx); m.receiveShadow=true; scene.add(m); return m; }
+  const DH=205;
+  HPOLY.forEach((p,i)=>{
+    const q=HPOLY[(i+1)%HPOLY.length], g=geom(p,q);
+    const W={px:(p[0]+q[0])/2,pz:(p[1]+q[1])/2,nx:g.nx,nz:g.nz,items:[]}; walls.push(W);
+    let s=0;
+    (HOPEN[i]||[]).forEach(o=>{
+      if(o[0]>s){ W.items.push(seg(p,q,s,o[0],0,H), segBox(p,q,s,o[0]-s,0,8,1.2,0.6,trimMat)); }
+      const w=o[1]-o[0];
+      W.items.push(seg(p,q,o[0],o[1],DH+3,H));
+      W.items.push(segBox(p,q,o[0]+2,w-4,0,DH+1,4,-5,o[2]==='front'?frontMat:doorMat));          // leaf (closed)
+      W.items.push(segBox(p,q,o[0],2,0,DH+3,8,-3.5,frameMat), segBox(p,q,o[1]-2,2,0,DH+3,8,-3.5,frameMat), segBox(p,q,o[0],w,DH+1,2,8,-3.5,frameMat)); // jambs
+      W.items.push(segBox(p,q,o[0]-6,7,0,DH+8,1.8,0.9,frameMat), segBox(p,q,o[1]-1,7,0,DH+8,1.8,0.9,frameMat), segBox(p,q,o[0]-6,w+12,DH+1,7,1.8,0.9,frameMat)); // casings
+      W.items.push(segBox(p,q,o[1]-16,11,102,1.8,2,-2.3,metal), segBox(p,q,o[1]-10,4,98,8,0.8,-2.8,metal)); // lever + rose
+      s=o[1];
+    });
+    if(s<g.L){ W.items.push(seg(p,q,s,g.L,0,H), segBox(p,q,s,g.L-s,0,8,1.2,0.6,trimMat)); }
+  });
+  // floor + ceiling
+  const shape=new THREE.Shape(); HPOLY.forEach((p,i)=>i?shape.lineTo(p[0],p[1]):shape.moveTo(p[0],p[1]));
+  const fg=new THREE.ShapeGeometry(shape); const ft=tileTexture(C.floor,'floor-hall').clone(); ft.needsUpdate=true; ft.repeat.set(1/ft.userData.bw,1/ft.userData.bh);
+  const floor=new THREE.Mesh(fg,M({map:ft,roughness:C.floor.rough,side:THREE.DoubleSide,envMapIntensity:.5})); floor.rotation.x=Math.PI/2; floor.receiveShadow=true; scene.add(floor);
+  const ceil=new THREE.Mesh(fg,M({color:'#f5f3ef',roughness:.95,side:THREE.DoubleSide})); ceil.rotation.x=Math.PI/2; ceil.position.y=H; scene.add(ceil);
+
+  /* laundry niche: x157-234, z-25..27 */
+  const wash=M({color:'#3b3e42',roughness:.35,metalness:.2}); box(60,85,46,wash,204,42.5,-2);
+  const ring=add(new THREE.TorusGeometry(15,2.2,14,48),M({color:'#c9cccc',metalness:.6,roughness:.3}),204,40,21.4,false);
+  const glass=add(new THREE.CylinderGeometry(14,14,1,40),M({color:'#1d2226',metalness:.2,roughness:.08}),204,40,21.1,false); glass.rotation.x=Math.PI/2;
+  box(60,10,0.6,M({color:'#2c2f33',roughness:.4}),204,78,21.3,false);
+  add(new THREE.CylinderGeometry(2.6,2.6,1.5,20),M({color:'#bfc3c3',metalness:.5,roughness:.3}),220,78,21.8,false).rotation.x=Math.PI/2;
+  box(77,3,52,oak,195.5,86.5,1);
+  box(77,80,35,cabMat,195.5,205,-7.5);
+  box(0.6,78,0.5,M({color:'#9b958c'}),195.5,205,10.1,false);
+  box(1.2,14,1.2,metal,192.5,175,10.8,false); box(1.2,14,1.2,metal,198.5,175,10.8,false);
+  box(15,84,24,cabMat,165.5,42,-12); // slim pull-out in the 17 cm gap by the bathroom door
+  box(1,10,1,metal,165.5,78,0.4,false);
+  [[168,'#f0ece4'],[176,'#9fb3b8']].forEach(([x,c],k)=>add(new THREE.CylinderGeometry(3.5,3.5,20-k*4,18),M({color:c,roughness:.4}),x,98-k*2,-12));
+  add(new THREE.CylinderGeometry(11,9,14,26),M({color:'#c7b59a',roughness:.95}),220,95,-5);
+  box(60,0.6,30,M({color:'#ffe9c2',emissive:'#ffd9a0',emissiveIntensity:1}),195.5,164.6,-7.5,false);
+
+  /* entrance: shoe cabinet + coat rail on the right wall */
+  box(24,80,55,cabMat,357,60,-2.5);
+  box(26,3,57,oak,356,101.5,-2.5);
+  box(0.5,0.6,53,M({color:'#9b958c'}),344.8,60,-2.5,false);
+  box(2,9,58,oak,368,178,-2.5);
+  [-22,-8,6,20].forEach(z=>{ add(new THREE.CylinderGeometry(.9,.9,7,10),metal,364,176,z,false).rotation.z=Math.PI/2; add(new THREE.SphereGeometry(1.4,12,8),metal,360.6,176,z,false); });
+  box(4,55,26,M({color:'#5d6460',roughness:1}),362,145,-14); box(4,48,24,M({color:'#b9ad9b',roughness:1}),361,148,8);
+
+  /* wardrobe with mirror door: bottom wall x274-359, z58-98 */
+
+  /* lights */
+  scene.add(new THREE.HemisphereLight('#ffffff','#8a7a68',.14));
+  [[45,60],[130,45],[205,30],[300,15],[300,70]].forEach(([x,z],i)=>{
+    add(new THREE.CylinderGeometry(4,4,1,24),M({color:'#fff',emissive:'#fff2dc',emissiveIntensity:2}),x,H-0.4,z,false);
+    const L=new THREE.PointLight('#fff1dd',i===2?0.36:0.2,0,2); L.decay=0; L.position.set(x,H-12,z);
+    if(i===2){L.castShadow=true;L.shadow.mapSize.set(1024,1024);L.shadow.bias=-0.002;L.shadow.radius=6;}
+    scene.add(L);
+  });
+  scene.userData={walls,ceil};
+  return scene;
+}
+
+function planHall(){
+  const s=1.55, ox=34, oy=34+37*s, P=(x,z)=>[ox+x*s,oy+z*s];
+  const W=ox*2+369*s, Hh=oy+186*s+26;
+  const SPLIT={0:1,5:1,6:1};
+  let walls='', dims='', doors='';
+  HPOLY.forEach((p,i)=>{
+    const q=HPOLY[(i+1)%HPOLY.length], L=Math.hypot(q[0]-p[0],q[1]-p[1]), dx=(q[0]-p[0])/L, dz=(q[1]-p[1])/L, nx=-dz, nz=dx;
+    const cuts=[0]; (HOPEN[i]||[]).forEach(o=>cuts.push(o[0],o[1])); cuts.push(L);
+    for(let k=0;k<cuts.length-1;k++){ const a=cuts[k],b=cuts[k+1]; if(b-a<.5) continue;
+      const A=P(p[0]+dx*a,p[1]+dz*a),B=P(p[0]+dx*b,p[1]+dz*b);
+      if(k%2) doors+=`<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" class="dr"/>`;
+      else walls+=`<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" class="wl"/>`;
+      if(SPLIT[i]){ const m=(a+b)/2, T=P(p[0]+dx*m-nx*9,p[1]+dz*m-nz*9); dims+=`<text x="${T[0]}" y="${T[1]+4}" text-anchor="middle" class="dl">${Math.round(b-a)}</text>`; }
+    }
+    if(!SPLIT[i]){ const m=L/2, T=P(p[0]+dx*m-nx*10,p[1]+dz*m-nz*10); dims+=`<text x="${T[0]}" y="${T[1]+4}" text-anchor="middle" class="dl">${Math.round(L)}</text>`; }
+  });
+  const r=(x,z,w,d,lab,cls='fx')=>{const[a,b]=P(x,z);return `<rect x="${a}" y="${b}" width="${w*s}" height="${d*s}" class="${cls}"/>`+(lab?`<text x="${a+w*s/2}" y="${b+d*s/2+4}" text-anchor="middle" class="fl">${lab}</text>`:'');};
+  const t=(x,z,lab)=>{const[a,b]=P(x,z);return `<text x="${a}" y="${b}" text-anchor="middle" class="fl" style="font-weight:400">${lab}</text>`;};
+  return `<svg viewBox="0 0 ${W} ${Hh}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="План на коридора">
+  <style>.wl{stroke:currentColor;stroke-width:3;stroke-linecap:square}.dr{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 3}.dl{fill:var(--muted);font:10.5px var(--f-mono)}.fx{fill:var(--chip);stroke:currentColor;stroke-width:1}.fl{fill:currentColor;font:600 10px var(--f-body)}</style>
+  ${r(174,-25,60,50,'Пералня')}${r(345,-30,24,55,'')}  ${t(117,-8,'баня')}${t(299,-45,'вход')}${t(357,-36+10,'')}
+  ${walls}${doors}${dims}
+  </svg>`;
+}
+
+/* ---------- small bathroom (WC) ---------- */
+const WPOLY=[[0,0],[89,0],[89,53],[110,53],[110,136],[0,136]];
+const WOPEN={5:[[10,75]]}; // door on the left wall, 65 cm opening, 10 cm from the bottom corner
+const WC={ id:'w', kind:'wc', name:'Малка баня', short:'Тоалетна, душ, мивка и бойлер',
+  about:'Малката баня е в стила на голямата: плочки 60×120 вертикално до 240 см, под с дървесна шарка в светъл дъб и четкано злато. Окачената тоалетна е на инсталация по цялата стена от 89 см, с плот с жив ръб отгоре. Душът е в ъгъла до вратата, без кабина, с открита душ колона. Линейният сифон минава до дясната стена под мивката, а подът е с наклон към него. На дясната стена има малка окачена мивка с кръгло огледало, а над тях хоризонтален бойлер. Ревизията остава достъпна, а вентилаторът е на нея.',
+  palette:[['Плочки 60×120','#f1eee8'],['Под светъл дъб','#b98f62'],['Дъб, жив ръб','#c29b6b'],['Четкано злато','#b8925a']],
+  specs:[['Стени','60×120 топло бяло, мат, вертикално до 240 см; над тях боя'],['Под','20×120 гранитогрес, светъл дъб'],['Тоалетна','Окачена, на инсталация с бутон четкано злато'],['Плот','Дъб/акация с жив ръб над казанчето, ~89 × 26 см'],['Душ','Без кабина, ~80 × 60 см до вратата; външна батерия с термостат; линеен сифон до дясната стена, под мивката'],['Мивка','Малка окачена, ~40 × 25 см, под бойлера'],['Бойлер','Хоризонтален 50 л (~80 × Ø35); 80 л не влиза в стена от 83 см'],['Вентилатор','С влагомер, на ревизията'],['Врата','65 см отвор, отваря навън (приета ширина)']],
+  floor:{tw:120,th:20,base:'#b98f62',grout:'#8f6c48',vary:.06,finish:'wood',rough:.6,pattern:'brick'},
+  wall:{tw:60,th:120,base:'#f1eee8',grout:'#e2ddd4',vary:.006,finish:'stone',rough:.32,gw:.2,cols:2,rows:2},
+  paint:'#f1eee8', metal:{color:'#b8925a',metalness:.9,roughness:.32} };
+CONCEPTS.splice(1,0,WC);
+const WVIEWS=[
+ {name:'Към тоалетната', pos:[55,150,132], tgt:[45,80,5], fov:74},
+ {name:'Към душа', pos:[80,152,62], tgt:[25,100,136], fov:76},
+ {name:'Към мивката', pos:[16,150,72], tgt:[110,150,98], fov:76},
+ {name:'Отгоре', pos:[55,430,270], tgt:[55,30,68], fov:40, doll:true}
+];
+
+function buildWC(C){
+  const scene=new THREE.Scene(); scene.environment=envTex; scene.background=new THREE.Color('#cfd3d1');
+  const walls=[]; const M=o=>new THREE.MeshStandardMaterial(Object.assign({envMapIntensity:.35},o));
+  const metal=M(C.metal), white=M({color:'#f6f6f4',roughness:.18,envMapIntensity:.8});
+  const add=(geo,mat,x,y,z,cast=true)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;scene.add(m);return m;};
+  const box=(w,h,d,mat,x,y,z,cast)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z,cast);
+  const paint=M({color:C.paint,roughness:.9,side:THREE.DoubleSide,envMapIntensity:.25});
+  const tileMat=(len,y0,y1)=>{const t=tileTexture(C.wall,'wall-wc').clone();t.needsUpdate=true;t.repeat.set(len/t.userData.bw,(y1-y0)/t.userData.bh);t.offset.set(0,y0/t.userData.bh);return M({map:t,roughness:C.wall.rough,side:THREE.DoubleSide});};
+  const woodT=(rot)=>{const t=woodTexture('oak').clone();t.needsUpdate=true;t.center.set(.5,.5);if(rot)t.rotation=Math.PI/2;t.repeat.set(rot?.55:1/100,rot?.5:1/40);return t;};
+  const doorMat=M({map:woodT(true),roughness:.5});
+  const geom=(p,q)=>{const L=Math.hypot(q[0]-p[0],q[1]-p[1]),dx=(q[0]-p[0])/L,dz=(q[1]-p[1])/L;return{L,dx,dz,nx:-dz,nz:dx};};
+  function segBox(p,q,s0,len,y0,h,depth,off,mat,cast=false){
+    const g=geom(p,q),c=s0+len/2,m=new THREE.Mesh(new THREE.BoxGeometry(len,h,depth),mat);
+    m.position.set(p[0]+g.dx*c+g.nx*off,y0+h/2,p[1]+g.dz*c+g.nz*off); m.rotation.y=-Math.atan2(g.dz,g.dx); m.castShadow=cast; m.receiveShadow=true; scene.add(m); return m; }
+  function seg(p,q,s0,s1,y0,y1,mat,off=0){
+    const g=geom(p,q),len=s1-s0,c=s0+len/2,m=new THREE.Mesh(new THREE.PlaneGeometry(len,y1-y0),mat);
+    m.position.set(p[0]+g.dx*c+g.nx*off,(y0+y1)/2,p[1]+g.dz*c+g.nz*off); m.rotation.y=-Math.atan2(g.dz,g.dx); m.receiveShadow=true; scene.add(m); return m; }
+  const WK=240, DH=205;
+  WPOLY.forEach((p,i)=>{
+    const q=WPOLY[(i+1)%WPOLY.length], g=geom(p,q);
+    const W={px:(p[0]+q[0])/2,pz:(p[1]+q[1])/2,nx:g.nx,nz:g.nz,items:[]}; walls.push(W);
+    const solid=(a,b)=>W.items.push(seg(p,q,a,b,0,WK,tileMat(b-a,0,WK)),seg(p,q,a,b,WK,H,paint));
+    let s=0;
+    (WOPEN[i]||[]).forEach(o=>{
+      if(o[0]>s) solid(s,o[0]);
+      const w=o[1]-o[0];
+      W.items.push(seg(p,q,o[0],o[1],DH,WK,tileMat(w,DH,WK)),seg(p,q,o[0],o[1],WK,H,paint));
+      W.items.push(segBox(p,q,o[0]+2,w-4,0,DH-1,4,-5,doorMat));
+      W.items.push(segBox(p,q,o[0],2,0,DH,8,-3.5,doorMat),segBox(p,q,o[1]-2,2,0,DH,8,-3.5,doorMat),segBox(p,q,o[0],w,DH-2,2,8,-3.5,doorMat));
+      W.items.push(segBox(p,q,o[0]+4,11,100,1.8,2,-2.3,metal),segBox(p,q,o[0]+6,4,96,8,0.8,-2.8,metal));
+      s=o[1];
+    });
+    if(s<g.L) solid(s,g.L);
+  });
+  // floor + ceiling
+  const shape=new THREE.Shape(); WPOLY.forEach((p,i)=>i?shape.lineTo(p[0],p[1]):shape.moveTo(p[0],p[1]));
+  const fg=new THREE.ShapeGeometry(shape); const ft=tileTexture(C.floor,'floor-wc').clone(); ft.needsUpdate=true; ft.repeat.set(1/ft.userData.bw,1/ft.userData.bh);
+  const floor=new THREE.Mesh(fg,M({map:ft,roughness:C.floor.rough,side:THREE.DoubleSide,envMapIntensity:.5})); floor.rotation.x=Math.PI/2; floor.receiveShadow=true; scene.add(floor);
+  const ceil=new THREE.Mesh(fg,M({color:'#f7f5f1',roughness:.95,side:THREE.DoubleSide})); ceil.rotation.x=Math.PI/2; ceil.position.y=H; scene.add(ceil);
+
+  /* ledge with concealed cistern across the 89 cm wall, live-edge top */
+  const LH=112;
+  seg([0,20],[89,20],0,89,0,LH,tileMat(89,0,LH));
+  const r=rng(21), front=[]; for(let x=89;x>=0;x-=2) front.push([x,24.5+Math.sin(x*0.09+2)*1.5+Math.sin(x*0.23+4)*.7+(r()-.5)*.5]);
+  const lt=woodTexture('oak').clone(); lt.needsUpdate=true; lt.repeat.set(1/90,1/30);
+  const sh=new THREE.Shape(); [[0,0],[89,0],...front].forEach((p,i)=>i?sh.lineTo(p[0],p[1]):sh.moveTo(p[0],p[1])); sh.closePath();
+  const slab=new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:4,bevelEnabled:true,bevelThickness:.4,bevelSize:.5,bevelSegments:2,curveSegments:8}),[M({map:lt,roughness:.42}),M({color:'#8a6a45',roughness:.85})]);
+  slab.rotation.x=Math.PI/2; slab.position.y=LH+4-0.4; slab.castShadow=true; slab.receiveShadow=true; scene.add(slab);
+  box(22,15,1,metal,44.5,95,20.6,false); box(9,11,0.4,M({color:'#8f7246',roughness:.4}),40,95,21.2,false); box(9,11,0.4,M({color:'#8f7246',roughness:.4}),49,95,21.2,false);
+  add(new THREE.CylinderGeometry(5,5,16,24),M({color:'#e9e2d6',roughness:.4}),16,LH+12,9);
+  add(new THREE.CylinderGeometry(1.2,1.2,26,8),M({color:'#6e7f5a',roughness:.8}),16,LH+29,9);
+  add(new THREE.CylinderGeometry(3,3,12,20),M({color:'#c9b79b',roughness:.35}),72,LH+10,8);
+  /* wall-hung toilet */
+  const bowl=add(new THREE.CylinderGeometry(17,13,30,48),white,44.5,26,47); bowl.scale.set(1,1,1.45);
+  box(34,30,10,white,44.5,26,25);
+  const seat=add(new THREE.CylinderGeometry(17.6,17.6,2.4,48),white,44.5,42.2,48); seat.scale.set(1,1,1.42);
+  const lid=add(new THREE.CylinderGeometry(17.2,17.2,1.6,48),M({color:'#fafaf8',roughness:.3}),44.5,44.2,48); lid.scale.set(1,1,1.42);
+  /* paper holder on the shaft side, revision panel and fan on the shaft */
+  box(1.2,1.2,14,metal,88.2,70,38,false);
+  add(new THREE.CylinderGeometry(5.5,5.5,11,24),M({color:'#fbfbf9',roughness:.9}),82,64,38).rotation.x=Math.PI/2;
+  box(0.6,34,30,M({color:'#f4f1ec',roughness:.4}),88.6,150,30,false);
+  box(1.4,19,19,M({color:'#f6f6f6',roughness:.15}),88.3,224,26.5,false);
+  /* shower in the corner by the door: exposed thermostatic column on the bottom wall, linear drain */
+  box(5,0.4,76,metal,105,0.3,96,false); box(1.2,0.5,72,M({color:'#111',roughness:.6}),105,0.35,96,false); // linear drain along the right wall, under the basin
+  [32.5,47.5].forEach(x=>{const e=add(new THREE.CylinderGeometry(1.4,1.4,5,14),metal,x,105,133.5,false); e.rotation.x=Math.PI/2;});
+  const mx=add(new THREE.CylinderGeometry(2.8,2.8,30,24),metal,40,105,130); mx.rotation.z=Math.PI/2;
+  [23.5,56.5].forEach(x=>{const k=add(new THREE.CylinderGeometry(3.2,3.2,4,24),metal,x,105,130); k.rotation.z=Math.PI/2;});
+  add(new THREE.CylinderGeometry(1.3,1.3,98,16),metal,40,157,130);
+  const arm=add(new THREE.CylinderGeometry(1.2,1.2,26,14),metal,40,206,117); arm.rotation.x=Math.PI/2;
+  add(new THREE.SphereGeometry(1.6,14,10),metal,40,206,130,false);
+  add(new THREE.CylinderGeometry(1.1,1.1,4,12),metal,40,204,104,false);
+  add(new THREE.CylinderGeometry(12,12,1.4,40),metal,40,201.5,104);
+  box(4,3,3,metal,44,140,130,false);
+  const hh=add(new THREE.CylinderGeometry(1.5,1.1,20,12),metal,47,146,129); hh.rotation.z=-.18;
+  /* small wall-hung basin on the right wall, under the boiler */
+  box(25,12,40,white,97.5,80,98); box(19,0.6,34,M({color:'#e9ebe9',roughness:.2}),96.5,85.8,98,false);
+  add(new THREE.CylinderGeometry(1.5,1.5,.5,16),metal,96,86.2,98,false);
+  add(new THREE.CylinderGeometry(1.6,1.8,16,20),metal,106,94,98);
+  const sp=add(new THREE.CylinderGeometry(1.1,1.1,10,14),metal,101,101.5,98); sp.rotation.z=Math.PI/2;
+  add(new THREE.CylinderGeometry(1.4,1.4,14,16),metal,97,67,98,false); add(new THREE.CylinderGeometry(2.6,2.6,8,18),metal,97,58,98,false);
+  const tp=add(new THREE.CylinderGeometry(1.4,1.4,13,14),metal,103.5,57,98,false); tp.rotation.z=Math.PI/2;
+  /* round mirror */
+  const mir=new THREE.Mesh(new THREE.CircleGeometry(19,48),new THREE.MeshStandardMaterial({color:'#e8eceb',metalness:1,roughness:.04,envMapIntensity:1.1}));
+  mir.rotation.y=-Math.PI/2; mir.position.set(108.9,138,98); scene.add(mir);
+  const fr=new THREE.Mesh(new THREE.TorusGeometry(19.8,1,10,60),metal); fr.rotation.y=-Math.PI/2; fr.position.set(109,138,98); scene.add(fr);
+  walls[3].items.push(mir,fr);
+  /* horizontal 50 L water heater above (~80 x 35) */
+  const bw=M({color:'#f2f2f0',roughness:.3,envMapIntensity:.6});
+  const bo=add(new THREE.CylinderGeometry(17.5,17.5,74,48),bw,91.5,214,95); bo.rotation.x=Math.PI/2;
+  [58,132].forEach((z,i)=>{ const cap=add(new THREE.SphereGeometry(17.5,40,20,0,Math.PI*2,0,Math.PI/2),bw,91.5,214,z); cap.scale.set(1,0.15,1); cap.rotation.x=i?Math.PI/2:-Math.PI/2; });
+  box(5,5,56,metal,108,214,95,false);
+  [89,101].forEach(z=>add(new THREE.CylinderGeometry(1,1,12,10),metal,98,192,z,false));
+  /* lights */
+  scene.add(new THREE.HemisphereLight('#ffffff','#9d988f',.12));
+  [[44,45],[40,104],[85,95]].forEach(([x,z],i)=>{
+    add(new THREE.CylinderGeometry(4,4,1,24),M({color:'#fff',emissive:'#fff2dc',emissiveIntensity:2}),x,H-0.4,z,false);
+    const L=new THREE.PointLight('#fff1dd',i?0.3:0.36,0,2); L.decay=0; L.position.set(x,H-12,z);
+    if(!i){L.castShadow=true;L.shadow.mapSize.set(1024,1024);L.shadow.bias=-0.002;L.shadow.radius=6;}
+    scene.add(L);
+  });
+  scene.userData={walls,ceil};
+  return scene;
+}
+
+function planWC(){
+  const s=2.6, ox=46, oy=34, P=(x,z)=>[ox+x*s,oy+z*s];
+  const W=ox*2+110*s, Hh=oy+136*s+30;
+  let walls='', dims='', doors='';
+  const SPLIT={5:1};
+  WPOLY.forEach((p,i)=>{
+    const q=WPOLY[(i+1)%WPOLY.length], L=Math.hypot(q[0]-p[0],q[1]-p[1]), dx=(q[0]-p[0])/L, dz=(q[1]-p[1])/L, nx=-dz, nz=dx;
+    const cuts=[0]; (WOPEN[i]||[]).forEach(o=>cuts.push(o[0],o[1])); cuts.push(L);
+    for(let k=0;k<cuts.length-1;k++){ const a=cuts[k],b=cuts[k+1]; if(b-a<.5) continue;
+      const A=P(p[0]+dx*a,p[1]+dz*a),B=P(p[0]+dx*b,p[1]+dz*b);
+      if(k%2) doors+=`<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" class="dr"/>`; else walls+=`<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" class="wl"/>`;
+      if(SPLIT[i]){ const m=(a+b)/2, T=P(p[0]+dx*m-nx*7,p[1]+dz*m-nz*7); dims+=`<text x="${T[0]}" y="${T[1]+4}" text-anchor="middle" class="dl">${Math.round(b-a)}</text>`; }
+    }
+    if(!SPLIT[i]){ const T=P(p[0]+dx*L/2-nx*8,p[1]+dz*L/2-nz*8); dims+=`<text x="${T[0]}" y="${T[1]+4}" text-anchor="middle" class="dl">${Math.round(L)}</text>`; }
+  });
+  const [a,b]=P(0,0); const [tx,ty]=P(44.5,47);
+  return `<svg viewBox="0 0 ${W} ${Hh}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="План на малката баня">
+  <style>.wl{stroke:currentColor;stroke-width:3;stroke-linecap:square}.dr{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 3}.dl{fill:var(--muted);font:10.5px var(--f-mono)}.fx{fill:var(--chip);stroke:currentColor;stroke-width:1}.fl{fill:currentColor;font:600 10px var(--f-body)}.rev{fill:var(--chip);stroke:currentColor;stroke-width:1;stroke-dasharray:3 2}</style>
+  <rect x="${a}" y="${b}" width="${89*s}" height="${20*s}" class="fx"/><text x="${a+44.5*s}" y="${b+12*s}" text-anchor="middle" class="fl">Инсталация + плот</text>
+  <ellipse cx="${tx}" cy="${ty}" rx="${17*s}" ry="${24*s}" class="fx"/><text x="${tx}" y="${ty+4}" text-anchor="middle" class="fl">WC</text>
+  <rect x="${P(89,0)[0]}" y="${P(89,0)[1]}" width="${21*s}" height="${53*s}" class="rev"/><text x="${P(99.5,30)[0]}" y="${P(99.5,30)[1]}" text-anchor="middle" class="fl" style="font-size:8px">ревизия</text>
+  <rect x="${P(0,76)[0]}" y="${P(0,76)[1]}" width="${80*s}" height="${60*s}" fill="rgba(90,140,160,.14)"/><text x="${P(40,110)[0]}" y="${P(40,110)[1]}" text-anchor="middle" class="fl">Душ</text>
+  <line x1="${P(105,58)[0]}" y1="${P(105,58)[1]}" x2="${P(105,134)[0]}" y2="${P(105,134)[1]}" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="${P(85,78)[0]}" y="${P(85,78)[1]}" width="${25*s}" height="${40*s}" class="fx"/><text x="${P(97.5,96)[0]}" y="${P(97.5,96)[1]}" text-anchor="middle" class="fl" style="font-size:9px">Мивка</text>
+  <rect x="${P(74,58)[0]}" y="${P(74,58)[1]}" width="${36*s}" height="${74*s}" class="rev" fill="none" style="fill:none"/><text x="${P(92,128)[0]}" y="${P(92,128)[1]}" text-anchor="middle" class="fl" style="font-size:8px;font-weight:400">бойлер горе</text>
+  <text x="${P(8,70)[0]}" y="${P(8,70)[1]}" class="fl" style="font-weight:400">врата</text>
+  ${walls}${doors}${dims}
+  </svg>`;
+}
+
+/* ---------- UI ---------- */
+const $=id=>document.getElementById(id);
+const cache={}; const scenes={};
+let cur=0, curView=0;
+
+function renderTabs(){
+  $('tabs').innerHTML=CONCEPTS.map((c,i)=>`<button class="tab" role="tab" id="tab-${c.id}" aria-selected="${i===cur}"><span class="sw">${c.palette.map(p=>`<i style="background:${p[1]}"></i>`).join('')}</span><span class="t">${c.kind==='hall'?'':'Баня: '}${c.name}</span><span class="s">${c.short}</span></button>`).join('');
+  [...$('tabs').children].forEach((b,i)=>b.onclick=()=>select(i));
+}
+function renderSpec(){
+  const c=CONCEPTS[cur];
+  $('mats').innerHTML=`<h3>Материали</h3><dl>${c.specs.map(s=>`<dt>${s[0]}</dt><dd>${s[1]}</dd>`).join('')}</dl>`;
+  $('spec').innerHTML=`<div style="display:grid;gap:8px"><h2>${c.name}</h2><p>${c.about}</p></div>
+  <div style="display:grid;gap:10px"><h3>Палитра</h3><div class="chips">${c.palette.map(p=>`<span class="chip"><i style="background:${p[1]}"></i>${p[0]}</span>`).join('')}</div></div>
+  <div style="display:grid;gap:10px"><h3>План, см</h3><div class="plan">${c.kind==='hall'?planHall():c.kind==='wc'?planWC():planSVG(c)}</div></div>`;
+}
+function showView(){
+  const imgs=cache[cur]; if(!imgs) return; const V=viewsFor(cur);
+  $('big').src=imgs[curView]; $('big').alt=CONCEPTS[cur].name+' — '+V[curView].name; $('cap').textContent=V[curView].name;
+  [...$('strip').children].forEach((t,i)=>t.setAttribute('aria-current',i===curView));
+}
+function renderStrip(){
+  const imgs=cache[cur], V=viewsFor(cur);
+  $('strip').innerHTML=V.map((v,i)=>`<button class="thumb" aria-label="${v.name}" id="th-${i}">${imgs?`<img src="${imgs[i]}" alt="">`:''}</button>`).join('');
+  $('labels').innerHTML=V.map(v=>`<span>${v.name}</span>`).join('');
+  $('strip').style.gridTemplateColumns=$('labels').style.gridTemplateColumns=`repeat(${V.length},minmax(0,1fr))`;
+  [...$('strip').children].forEach((t,i)=>t.onclick=()=>{curView=i;showView();});
+}
+function ensure(i){
+  if(cache[i]) return cache[i];
+  const C=CONCEPTS[i];
+  const sc = scenes[i] || (scenes[i]=(C.kind==='hall'?buildHall:C.kind==='wc'?buildWC:build)(C));
+  cache[i]=viewsFor(i).map(v=>renderStill(sc,v));
+  return cache[i];
+}
+function select(i){
+  const kindChanged = CONCEPTS[i].kind!==CONCEPTS[cur].kind;
+  cur=i; renderTabs(); renderSpec();
+  $('busy').hidden=!!cache[i];
+  setTimeout(()=>{ ensure(i); $('busy').hidden=true; renderStrip(); showView(); setLive(); if(kindChanged) aimLive(); },30);
+}
+
+/* live viewer */
+let live, liveCam, controls;
+function aimLive(){
+  if(!controls) return;
+  if(CONCEPTS[cur].kind==='hall'){ liveCam.position.set(185,560,420); controls.target.set(185,30,60); }
+  else if(CONCEPTS[cur].kind==='wc'){ liveCam.position.set(55,330,250); controls.target.set(55,30,68); }
+  else { liveCam.position.set(113,470,330); controls.target.set(113,40,83); }
+  controls.update();
+}
+function initLive(){
+  const cv=$('live');
+  live=new THREE.WebGLRenderer({canvas:cv,antialias:true}); setupR(live); live.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+  liveCam=new THREE.PerspectiveCamera(40,16/9,1,4000);
+  controls=new THREE.OrbitControls(liveCam,cv); controls.enableDamping=true; controls.maxPolarAngle=Math.PI*0.48; controls.minDistance=150; controls.maxDistance=1000; aimLive();
+  const resize=()=>{const w=cv.clientWidth,h=cv.clientHeight;live.setSize(w,h,false);liveCam.aspect=w/h;liveCam.updateProjectionMatrix();};
+  new ResizeObserver(resize).observe(cv); resize();
+  (function loop(){ requestAnimationFrame(loop); if(!document.hidden){ controls.update(); const sc=scenes[cur]; if(sc){ applyDoll(sc,liveCam,true); live.render(sc,liveCam); applyDoll(sc,liveCam,false);} } })();
+}
+function setLive(){ if(!live) try{initLive();}catch(e){ $('live').replaceWith(Object.assign(document.createElement('p'),{textContent:'3D изгледът не се поддържа от този браузър.'})); } }
+
+function boot(){
+  if(!window.THREE){ $('busy').textContent='Не успях да заредя 3D библиотеката.'; return; }
+  initRenderers(); renderTabs(); renderSpec(); renderStrip(); select(0);
+  setTimeout(()=>{ensure(1); setTimeout(()=>ensure(2),200);},800);
+}
+boot();
+})();
+</script>
+
+</body>
+</html>
